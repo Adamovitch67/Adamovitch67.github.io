@@ -24,6 +24,9 @@ body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15p
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
 .wrap{max-width:1180px;margin:0 auto}
 header{padding-block:40px 20px;display:grid;gap:10px}
+.home-btn{justify-self:start;margin-top:-24px;margin-bottom:8px;font:600 14px var(--body);color:var(--accent);background:var(--accent-soft);border:1px solid var(--line);padding:7px 14px;border-radius:999px;text-decoration:none}
+.home-btn:hover{border-color:var(--accent)}
+.home-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--brass)}
 h1{font-family:var(--display);font-weight:400;font-size:clamp(38px,6vw,64px);line-height:1;margin:0;text-wrap:balance}
 h1 em{color:var(--accent)}
@@ -170,6 +173,7 @@ footer{margin-top:40px;color:var(--muted);font-size:13px;border-top:1px solid va
 
 <div class="wrap">
   <header>
+    <a class="home-btn" href="https://adamovitch67.github.io/" aria-label="Retour à la page principale">← Adamovitch67</a>
     <div class="eyebrow">Français-Philo · Thème 2026-2027</div>
     <h1>Arcanes de la création <em id="h1work">· Woolf</em></h1>
     <p class="sub" id="subwork"></p>
