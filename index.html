@@ -24,9 +24,6 @@ body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15p
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
 .wrap{max-width:1180px;margin:0 auto}
 header{padding-block:40px 20px;display:grid;gap:10px}
-.home-btn{justify-self:start;margin-top:-24px;margin-bottom:8px;font:600 14px var(--body);color:var(--accent);background:var(--accent-soft);border:1px solid var(--line);padding:7px 14px;border-radius:999px;text-decoration:none}
-.home-btn:hover{border-color:var(--accent)}
-.home-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--brass)}
 h1{font-family:var(--display);font-weight:400;font-size:clamp(38px,6vw,64px);line-height:1;margin:0;text-wrap:balance}
 h1 em{color:var(--accent)}
@@ -70,7 +67,7 @@ tr:last-child td{border-bottom:0}
 .axe{margin-top:26px}
 .axe-head{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:baseline;padding-bottom:10px;border-bottom:2px solid var(--ink);margin-bottom:12px}
 .axe-num{font-family:var(--display);font-size:40px;line-height:1;color:var(--brass)}
-.axe-title{font-family:var(--display);font-size:26px;line-height:1.15;text-wrap:balance;margin:0}
+.axe-title{font-family:var(--display);font-size:26px;line-height:1.15;text-wrap:balance;margin:0;text-transform:none;letter-spacing:0;color:var(--ink);font-weight:400}
 .axe-idea{grid-column:2;color:var(--muted);font-size:14px;margin:0}
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:12px}
 .card{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:14px 16px;min-width:0;display:flex;flex-direction:column;gap:8px}
@@ -167,13 +164,120 @@ kbd{font:500 10px var(--mono);padding:1px 5px;border:1px solid var(--line);borde
 .howto summary{cursor:pointer;color:var(--ink);font-weight:600}
 @media (max-width:520px){.grades{grid-template-columns:repeat(2,1fr)}.grade kbd,.showbtn kbd{display:none}.rev-stats{gap:6px}.stat{padding:8px 10px}.stat b{font-size:24px}}
 @media (prefers-reduced-motion:no-preference){.flash .ans:not([hidden]){animation:revIn .25s ease-out}@keyframes revIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}}
+.home{cursor:pointer;justify-self:start;display:inline-flex;align-items:center;gap:6px;font:600 13px var(--body);color:var(--ink);text-decoration:none;padding:6px 12px;border:1px solid var(--line);border-radius:6px;background:var(--paper);margin-bottom:8px}
+.home:hover{border-color:var(--accent);color:var(--accent)}
+.home:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+.intro-lead{display:grid;gap:10px;max-width:72ch;font-size:16px}
+.intro-lead p{margin:0}
+.problematique{margin:20px 0 6px;padding:16px 20px;border-left:3px solid var(--brass);background:var(--brass-soft);border-radius:0 8px 8px 0;max-width:80ch}
+.problematique span{font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.07em;color:var(--brass)}
+.problematique p{margin:6px 0 0;font:400 22px/1.3 var(--display)}
+h3.intro-h{margin:30px 0 4px;font:400 26px var(--display);text-transform:none;letter-spacing:0;color:var(--ink)}
+.box .auth{color:var(--muted);font-size:14px}
+.histo{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:0;border-left:2px solid var(--line);max-width:80ch}
+.histo li{position:relative;padding:8px 0 12px 20px}
+.histo li::before{content:"";position:absolute;left:-6px;top:14px;width:10px;height:10px;border-radius:50%;background:var(--paper);border:2px solid var(--accent)}
+.histo li span{display:block;font:500 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-bottom:2px}
+.axes4{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:10px;margin-top:12px}
+.axes4 div{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:12px 14px;display:grid;gap:4px}
+.axes4 b{font:400 20px var(--display);color:var(--accent)}
+.axes4 span{font-size:14px;color:var(--muted)}
+.topbar{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.topbar .home{margin-bottom:0}
+.burger{width:38px;height:34px;display:inline-grid;align-content:center;gap:4px;justify-items:center;padding:0;border:1px solid var(--line);border-radius:6px;background:var(--paper);cursor:pointer}
+.burger span{display:block;width:16px;height:2px;border-radius:1px;background:var(--ink)}
+.burger:hover{border-color:var(--accent)}.burger:hover span{background:var(--accent)}
+.burger:focus-visible,.drawer button:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+header{border-bottom:1px solid var(--line)}
+.subtabs{display:flex;flex-wrap:wrap;gap:4px;margin-top:20px;padding:4px;background:var(--paper);border:1px solid var(--line);border-radius:10px;width:fit-content;max-width:100%}
+.subtabs button{font:600 14px var(--body);padding:9px 16px;border:0;border-radius:7px;background:transparent;color:var(--muted);cursor:pointer}
+.subtabs button:hover{color:var(--ink);background:var(--bg)}
+.subtabs button[aria-current="true"]{background:var(--accent);color:var(--paper)}
+.subtabs button:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+.ditem .ditem-sub{display:block;font:500 11px var(--mono);color:var(--muted);letter-spacing:.04em;margin-top:2px}
+.ditem[aria-current="true"] .ditem-sub{color:var(--accent)}
+@media (prefers-reduced-motion:no-preference){body{transition:padding-left .22s ease}}
+@media (min-width:900px){
+  body.menu-open{padding-left:calc(320px + 32px)}
+  body.menu-open .scrim{display:none!important}
+  body.menu-open .burger{background:var(--accent-soft);border-color:var(--accent)}
+}
+.scrim{position:fixed;inset:0;background:rgba(15,16,28,.38);z-index:40}
+.drawer{position:fixed;top:0;bottom:0;left:0;width:min(320px,86vw);z-index:50;background:var(--paper);border-right:1px solid var(--line);box-shadow:12px 0 40px -20px rgba(15,16,28,.5);transform:translateX(-105%);visibility:hidden;overflow-y:auto;padding:calc(env(safe-area-inset-top,0px) + 16px) 16px calc(env(safe-area-inset-bottom,0px) + 24px) max(16px,env(safe-area-inset-left,0px))}
+.drawer.open{transform:none;visibility:visible}
+@media (prefers-reduced-motion:no-preference){.drawer{transition:transform .22s ease,visibility .22s}}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.drawer-head span{font:400 26px var(--display)}
+.drawer-close{width:34px;height:34px;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink);font-size:20px;line-height:1;cursor:pointer}
+.dgroup{border-top:1px solid var(--line);padding:10px 0}
+.dgroup>b{display:block;font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.07em;color:var(--brass);margin:2px 0 6px 10px}
+.ditem{display:block;width:100%;text-align:left;font:500 15px var(--body);color:var(--ink);background:none;border:0;border-radius:6px;padding:8px 10px;cursor:pointer}
+.ditem:hover{background:var(--bg)}
+.ditem[aria-current="true"]{background:var(--accent-soft);color:var(--accent);font-weight:700}
+.ditem.top{font:400 21px var(--display)}
+.themebtn{margin-left:auto;display:inline-flex;align-items:center;gap:8px;font:600 13px var(--body);color:var(--ink);padding:6px 12px;border:1px solid var(--line);border-radius:6px;background:var(--paper);cursor:pointer}
+.themebtn:hover{border-color:var(--accent)}
+.theme-ico{width:14px;height:14px;border-radius:50%;border:2px solid var(--ink);background:linear-gradient(90deg,var(--ink) 50%,transparent 50%)}
+.cite-group{margin-top:8px}
+.cite-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:12px}
+.cite{margin:0;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:16px 18px;display:grid;gap:10px;min-width:0}
+.cite blockquote{margin:0}
+.cite-txt{font:italic 400 22px/1.3 var(--display);color:var(--accent)}
+.cite-mask{display:none;font:500 12px var(--mono);color:var(--muted);background:none;border:1px dashed var(--line);border-radius:4px;padding:10px;width:100%;text-align:left;cursor:pointer}
+body.cite-hide .cite:not(.open) .cite-txt{display:none}
+body.cite-hide .cite:not(.open) .cite-mask{display:block}
+.cite figcaption{display:flex;flex-wrap:wrap;gap:6px;align-items:baseline;font-size:14px}
+.cite figcaption .ch{font:500 12px var(--mono);color:var(--accent)}
+.cite figcaption .use{flex-basis:100%;color:var(--muted)}
+.perso-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:10px;margin-top:12px}
+.perso{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:12px 14px;display:grid;grid-template-columns:1fr auto;gap:6px 10px;align-items:baseline;min-width:0}
+.perso b{font:400 20px var(--display)}
+.perso p{grid-column:1/-1;margin:0;font-size:14px;color:var(--muted)}
+table.lex{min-width:640px}
+table.lex td:first-child{white-space:nowrap}
+.quiz-card{min-height:0}
+.quiz-q{font-size:clamp(22px,3.2vw,30px)!important}
+.qopts{display:grid;gap:8px;margin-top:6px}
+.qopt{display:flex;gap:12px;align-items:flex-start;text-align:left;font:15px/1.45 var(--body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px 14px;cursor:pointer}
+.qopt:hover:not(:disabled){border-color:var(--accent)}
+.qopt:disabled{cursor:default}
+.qopt.right{border-color:var(--good);background:var(--good-soft)}
+.qopt.wrong{border-color:var(--again);background:var(--again-soft)}
+.qopt kbd{flex:none;margin-top:2px}
+.qfeed{border-top:1px dashed var(--line);padding-top:12px;font-size:15px}
+.quiz-end{font-size:17px;margin:0}
+.plan-form{display:grid;gap:10px;max-width:760px;margin-top:14px}
+.plan-label{font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.07em;color:var(--brass)}
+#planSujet{font:400 20px/1.3 var(--display);padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);resize:vertical;width:100%}
+#planSujet:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+.plan-btns{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.plan-btns .showbtn{width:auto;padding:12px 22px}
+.plan-btns .showbtn:disabled{opacity:.6;cursor:default}
+.plan-out{max-width:820px;margin-top:20px;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:clamp(18px,3vw,30px);line-height:1.6}
+.plan-out h2,.plan-out h3{font:400 26px var(--display);margin:18px 0 6px}
+.plan-out h2:first-child,.plan-out h3:first-child{margin-top:0}
+.plan-out h4{font:400 21px var(--display);color:var(--accent);margin:16px 0 4px}
+.plan-out h5{font-size:15px;margin:12px 0 4px}
+.plan-out ul{padding-left:20px;margin:6px 0}
+.plan-out li{margin:4px 0}
+.plan-out p{margin:6px 0}
+.plan-out .muted{color:var(--muted)}
+.model{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:16px 20px;margin-top:12px;max-width:80ch}
+.model h4{font:400 22px var(--display);color:var(--accent);margin:0 0 8px}
+.model p{margin:6px 0}
+.corpus{display:grid;gap:8px;max-width:80ch}
+.corpus p{margin:0;padding:10px 14px;border-left:3px solid var(--accent);background:var(--paper);border-radius:0 6px 6px 0}
 footer{margin-top:40px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:14px}
 @media (prefers-reduced-motion:no-preference){.card{transition:border-color .15s}.card:hover{border-color:var(--accent)}}
 </style>
 
 <div class="wrap">
   <header>
-    <a class="home-btn" href="https://adamovitch67.github.io/" aria-label="Retour à la page principale">← Adamovitch67</a>
+    <div class="topbar">
+      <button class="burger" type="button" id="menuBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button>
+      <button class="home" type="button" id="homeBtn">Adamovitch67</button>
+      <button class="themebtn" type="button" id="themeBtn">Auto</button>
+    </div>
     <div class="eyebrow">Français-Philo · Thème 2026-2027</div>
     <h1>Arcanes de la création <em id="h1work">· Woolf</em></h1>
     <p class="sub" id="subwork"></p>
@@ -184,13 +288,81 @@ footer{margin-top:40px;color:var(--muted);font-size:13px;border-top:1px solid va
     </div>
   </header>
 
-  <nav class="tabs" role="tablist">
-    <button class="tab" role="tab" id="tab-presentation" aria-selected="false" data-view="presentation">Présentation</button>
-    <button class="tab" role="tab" id="tab-fiches" aria-selected="true" data-view="fiches">Fiches d'exemples</button>
-    <button class="tab" role="tab" id="tab-tableau" aria-selected="false" data-view="tableau">Tableau</button>
-    <button class="tab" role="tab" id="tab-essentiels" aria-selected="false" data-view="essentiels">Les incontournables</button>
-    <button class="tab" role="tab" id="tab-revision" aria-selected="false" data-view="revision">Révision Anki</button>
+
+  <nav class="subtabs" id="subtabs" aria-label="Rubriques de l'œuvre" hidden>
+    <button type="button" data-view="presentation">Présentation</button>
+    <button type="button" data-view="fiches">Fiches d'exemples</button>
+    <button type="button" data-view="tableau">Tableau</button>
   </nav>
+
+  <div class="scrim" id="scrim" hidden></div>
+  <nav class="drawer" id="drawer" aria-label="Sommaire" aria-hidden="true">
+    <div class="drawer-head"><span>Sommaire</span><button type="button" class="drawer-close" id="menuClose" aria-label="Fermer le menu">×</button></div>
+    <div id="drawerList"></div>
+  </nav>
+
+  <!-- INTRODUCTION GÉNÉRALE -->
+  <section id="intro" hidden>
+    <h2>Introduction générale</h2>
+    <div class="intro-lead">
+      <p><b>Arcane</b> vient du latin <i>arca</i>, le coffre : ce qui est enfermé, secret, réservé à des initiés. Les <b>arcanes de la création</b> désignent ce que l'acte créateur a d'obscur : d'où vient une œuvre, pourquoi certains y parviennent et d'autres échouent, ce qui la rend possible ou l'empêche.</p>
+      <p>Le thème ne demande pas de célébrer le génie, mais d'interroger les forces visibles et invisibles qui font naître une œuvre. Une tension le traverse : <b>peut-on expliquer la création, ou une part d'elle échappe-t-elle toujours à l'explication ?</b></p>
+    </div>
+
+    <div class="problematique">
+      <span>Problématique directrice</span>
+      <p>Comment une œuvre peut-elle être le produit de causes identifiables (travail, savoir-faire, influences, conditions matérielles) et pourtant l'apparition d'une nouveauté qu'aucune de ces causes ne suffit à expliquer ?</p>
+    </div>
+
+    <h3 class="intro-h">Distinguer les mots</h3>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Verbe</th><th>Sens</th><th>Exemple dans les œuvres</th></tr></thead>
+        <tbody>
+          <tr><td><b>Fabriquer</b></td><td>Transformer une matière selon un plan et des règles connus d'avance.</td><td>Le menuisier et son lit (Platon)</td></tr>
+          <tr><td><b>Imiter</b></td><td>Reprendre un modèle. Servile, ou point de départ d'une invention.</td><td>Le peintre du lit (Platon) ; Fagerolles (Zola)</td></tr>
+          <tr><td><b>Inventer</b></td><td>Trouver une solution ou une forme qui n'existait pas encore.</td><td>L'école du « plein air » (Zola)</td></tr>
+          <tr><td><b>Créer</b></td><td>Faire naître une forme nouvelle, singulière, dont la règle ne se sépare pas de l'œuvre.</td><td>Le poète inspiré (Platon) ; Shakespeare (Woolf)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="intro-h">Les trois grandes questions</h3>
+    <div class="pres-grid">
+      <div class="box">
+        <h3>1. Qu'est-ce qui rend la création possible ?</h3>
+        <p>Inspiration, don, génie, travail, méthode, hasard, inconscient, nécessité intérieure, contexte favorable.</p>
+        <p class="auth"><b>Platon</b> : l'inspiration divine. <b>Zola</b> : le travail acharné. <b>Woolf</b> : les conditions concrètes.</p>
+      </div>
+      <div class="box">
+        <h3>2. Qu'est-ce qui résiste à la création ?</h3>
+        <p>Doute, blocage, échec, folie, isolement, pauvreté, absence de reconnaissance, exclusion des femmes.</p>
+        <p class="auth"><b>Zola</b> : un obstacle intérieur (obsession, exigence). <b>Woolf</b> : un obstacle social. <b>Platon</b> : un obstacle philosophique (l'art n'est qu'imitation).</p>
+      </div>
+      <div class="box">
+        <h3>3. À quelles conditions peut-on créer ?</h3>
+        <p>Temps, argent, lieu protégé, liberté de pensée, maîtrise technique, reconnaissance, capacité à affronter l'échec.</p>
+        <p class="auth">La création n'est jamais purement individuelle : elle dépend du corps, du milieu, de l'histoire et des institutions.</p>
+      </div>
+    </div>
+
+    <h3 class="intro-h">Une notion qui a une histoire</h3>
+    <ol class="histo">
+      <li><span>Antiquité</span>L'art est une <i>technè</i>, un savoir-faire. Seul le poète passe pour « divin », inspiré par les muses (<i>Ion</i>).</li>
+      <li><span>Moyen Âge</span>Peinture et sculpture sont des « arts mécaniques », travaux de la main. Créer à partir de rien (<i>ex nihilo</i>) est réservé à Dieu.</li>
+      <li><span>Renaissance</span>Les peintres revendiquent un art de l'esprit (Léonard : la peinture est « chose mentale »). La figure de l'artiste naît.</li>
+      <li><span>XVIII<sup>e</sup>-XIX<sup>e</sup></span>Le génie et l'originalité deviennent des valeurs. Le romantisme invente l'artiste solitaire, incompris, parfois maudit (Claude Lantier).</li>
+      <li><span>XX<sup>e</sup> et aujourd'hui</span>On s'intéresse aux conditions sociales de la création (Woolf). L'intelligence artificielle brouille la limite entre produire, imiter et créer.</li>
+    </ol>
+
+    <h3 class="intro-h">Quatre axes pour l'étude</h3>
+    <div class="axes4">
+      <div><b>L'origine</b><span>Inspiration, génie, imagination, inconscient.</span></div>
+      <div><b>Le processus</b><span>Apprentissage, technique, travail, reprises, hasard.</span></div>
+      <div><b>Les conditions</b><span>Temps, lieu, argent, liberté, transmission.</span></div>
+      <div><b>Les risques</b><span>Imitation stérile, blocage, échec, obsession, folie.</span></div>
+    </div>
+  </section>
 
   <!-- PRÉSENTATION -->
   <section id="presentation" hidden>
@@ -424,6 +596,129 @@ footer{margin-top:40px;color:var(--muted);font-size:13px;border-top:1px solid va
     <div class="xl-scroll"><table class="xl" id="xl"></table></div>
   </section>
 
+  <!-- CITATIONS -->
+  <section id="citations" hidden>
+    <h2>Citations à retenir</h2>
+    <div class="tools">
+      <p class="sub" style="flex:1 1 320px">Des formules courtes, faciles à placer dans une copie. Relevées dans les résumés : vérifie la page exacte dans ton édition avant de les utiliser.</p>
+      <button class="toggle" id="citeHide" aria-pressed="false" type="button">Mode mémorisation</button>
+    </div>
+    <div class="chips" id="citeChips" aria-label="Filtrer par œuvre"></div>
+    <div id="citeList"></div>
+  </section>
+
+  <!-- PERSONNAGES ET NOTIONS -->
+  <section id="personnages" hidden>
+    <h2>Personnages</h2>
+    <div class="tools">
+      <input id="persoQ" type="search" placeholder="Chercher un personnage (ex. Bongrand, Glaucon)…" aria-label="Chercher un personnage">
+      <div class="chips" id="persoChips" aria-label="Filtrer par œuvre"></div>
+    </div>
+    <div class="perso-grid" id="persoGrid"></div>
+    <h2 style="margin-top:34px">Lexique du thème</h2>
+    <div class="table-scroll"><table class="lex"><thead><tr><th>Notion</th><th>Définition</th><th>Où l'utiliser</th></tr></thead><tbody id="lexBody"></tbody></table></div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz" hidden>
+    <div class="rev-top"><h2>Quiz</h2><span class="store" id="quizBest"></span></div>
+    <div class="chips" id="quizChips" aria-label="Choisir les œuvres"></div>
+    <div class="flash quiz-card" id="quizCard">
+      <div class="meta" id="qMeta"></div>
+      <p class="q quiz-q" id="qText"></p>
+      <div class="qopts" id="qOpts"></div>
+      <div class="qfeed" id="qFeed" hidden></div>
+    </div>
+    <div class="rev-actions"><button class="showbtn" type="button" id="qNext" hidden>Question suivante</button></div>
+  </section>
+
+  <!-- GÉNÉRATEUR DE PLAN -->
+  <section id="plan" hidden>
+    <h2>Générateur de plan</h2>
+    <p class="sub">Écris un sujet de dissertation sur le thème. Claude propose une analyse, une problématique et un plan en trois parties qui utilise les exemples des fiches. C'est une base à retravailler, pas une copie toute faite.</p>
+    <div class="plan-form">
+      <label for="planSujet" class="plan-label">Sujet</label>
+      <textarea id="planSujet" rows="2" placeholder="Ex. : « Le génie suffit-il à créer ? »"></textarea>
+      <div class="chips" id="planIdeas" aria-label="Exemples de sujets"></div>
+      <div class="plan-btns">
+        <button class="showbtn" type="button" id="planGo">Générer le plan</button>
+        <button class="toggle" type="button" id="planStop" hidden>Arrêter</button>
+        <button class="toggle" type="button" id="planCopy" hidden>Copier le plan</button>
+        <span class="count" id="planMsg" role="status"></span>
+      </div>
+    </div>
+    <article class="plan-out" id="planOut" hidden></article>
+  </section>
+
+  <!-- MÉTHODE -->
+  <section id="methode" hidden>
+    <h2>Introduction et conclusion</h2>
+    <h3 class="intro-h">L'introduction en 5 temps</h3>
+    <ol class="histo">
+      <li><span>1 · Accroche</span>Une citation, une anecdote ou un paradoxe lié au sujet. Jamais « De tout temps… ».</li>
+      <li><span>2 · Analyse des termes</span>Définis chaque mot important du sujet et montre ce qui pose problème entre eux.</li>
+      <li><span>3 · Problématique</span>Une seule question qui fait apparaître la tension du sujet.</li>
+      <li><span>4 · Présentation du corpus</span>Une phrase par œuvre qui dit ce qu'elle apporte au sujet.</li>
+      <li><span>5 · Annonce du plan</span>Trois parties, chacune résumée en une proposition.</li>
+    </ol>
+
+    <h3 class="intro-h">Banque d'accroches</h3>
+    <div class="table-scroll"><table class="lex">
+      <thead><tr><th>Accroche</th><th>Auteur</th><th>Pour quel sujet</th></tr></thead>
+      <tbody>
+        <tr><td>« Les dieux, gracieusement, nous donnent pour rien tel premier vers ; mais c'est à nous de façonner le second. »</td><td>Paul Valéry</td><td>Inspiration contre travail</td></tr>
+        <tr><td>« L'inspiration est décidément la sœur du travail journalier. »</td><td>Baudelaire</td><td>Travail, discipline, régularité</td></tr>
+        <tr><td>« Le génie est le talent qui donne à l'art sa règle. »</td><td>Kant, <i>Critique de la faculté de juger</i></td><td>Génie, règles, originalité</td></tr>
+        <tr><td>« Je est un autre. »</td><td>Rimbaud, lettre de 1871</td><td>L'artiste dépossédé, inspiration</td></tr>
+        <tr><td>La peinture est « chose mentale » (<i>cosa mentale</i>).</td><td>Léonard de Vinci</td><td>Art de la main ou de l'esprit</td></tr>
+        <tr><td>« Le génie n'est qu'une plus grande aptitude à la patience. » (attribuée)</td><td>Buffon</td><td>Génie et travail</td></tr>
+        <tr><td>Le génie serait « 1 % d'inspiration et 99 % de transpiration ». (attribuée)</td><td>Edison</td><td>Création et effort, technique</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3 class="intro-h">Définitions prêtes à l'emploi</h3>
+    <div class="pres-grid defs">
+      <div class="box"><h3>Créer</h3><p>Faire exister une forme nouvelle et singulière, qui porte la marque de son auteur et ne se réduit pas à l'application d'une règle.</p></div>
+      <div class="box"><h3>Arcanes</h3><p>Du latin <i>arca</i>, le coffre : les secrets, ce qui reste caché ou réservé à des initiés dans le processus créateur.</p></div>
+      <div class="box"><h3>Inspiration</h3><p>Élan qui semble venir d'ailleurs que de la volonté : des dieux chez Platon, du désir ou d'une révélation chez Zola.</p></div>
+      <div class="box"><h3>Génie</h3><p>Don exceptionnel d'invention. Idée tardive (XVIII<sup>e</sup> siècle) que les trois œuvres permettent de nuancer : travail, conditions, inspiration.</p></div>
+      <div class="box"><h3>Œuvre</h3><p>Résultat achevé d'une création, mais aussi l'effort même de créer : le titre de Zola joue sur ce double sens.</p></div>
+      <div class="box"><h3>Créateur</h3><p>Celui qui fait naître l'œuvre. Platon en fait un simple intermédiaire, Woolf un être dépendant de ses conditions, Zola un homme dévoré par elle.</p></div>
+    </div>
+
+    <h3 class="intro-h">Présenter le corpus en une phrase par œuvre</h3>
+    <div class="corpus">
+      <p><b>Platon</b>, dans l'<i>Ion</i> et le livre X de <i>La République</i>, fait de la création poétique un don des dieux qui échappe au savoir, avant de condamner l'art comme imitation éloignée de la vérité.</p>
+      <p><b>Zola</b>, dans <i>L'Œuvre</i> (1886), suit le peintre Claude Lantier, dévoré par sa quête d'un chef-d'œuvre qu'il ne parvient jamais à achever.</p>
+      <p><b>Virginia Woolf</b>, dans <i>Un lieu à soi</i> (1929), montre que la création dépend de conditions matérielles longtemps refusées aux femmes : de l'argent et un lieu à soi.</p>
+    </div>
+
+    <h3 class="intro-h">Deux introductions modèles</h3>
+    <div class="model">
+      <h4>Sujet : « Le génie suffit-il à créer ? »</h4>
+      <p><b>Accroche.</b> « Les dieux, gracieusement, nous donnent pour rien tel premier vers ; mais c'est à nous de façonner le second », écrit Valéry. Le don ouvre l'œuvre, il ne l'achève pas.</p>
+      <p><b>Analyse.</b> Le génie désigne une aptitude exceptionnelle et innée à inventer. Créer, c'est faire exister une forme nouvelle. « Suffire » suppose qu'aucune autre condition ne serait nécessaire : ni travail, ni technique, ni circonstances favorables.</p>
+      <p><b>Problématique.</b> Si le génie semble être le secret de toute création, peut-il faire naître seul une œuvre, ou dépend-il de forces et de conditions qui le dépassent ?</p>
+      <p><b>Corpus.</b> Platon fait du poète un inspiré qui ne sait rien ; Zola montre un peintre de génie incapable d'achever son chef-d'œuvre ; Woolf rappelle qu'une sœur de Shakespeare, aussi douée que lui, n'aurait rien pu écrire.</p>
+      <p><b>Plan.</b> Le génie apparaît d'abord comme la source mystérieuse de la création (I). Mais il ne suffit pas : il lui faut des conditions matérielles et un travail acharné (II). Peut-être alors faut-il comprendre la création comme la rencontre d'un don, d'un effort et d'un milieu (III).</p>
+    </div>
+    <div class="model">
+      <h4>Sujet : « Créer, est-ce souffrir ? »</h4>
+      <p><b>Accroche.</b> Claude Lantier se pend face à sa toile inachevée. La fin de <i>L'Œuvre</i> semble confirmer le mythe de l'artiste maudit.</p>
+      <p><b>Analyse.</b> Souffrir, c'est endurer une douleur physique ou morale. Le sujet demande si la souffrance est une condition, une conséquence ou seulement un accident de la création.</p>
+      <p><b>Problématique.</b> La souffrance est-elle le prix nécessaire de toute création, ou un obstacle qui l'empêche ?</p>
+      <p><b>Corpus.</b> Zola peint un créateur torturé par l'impuissance ; Woolf montre que la colère et la peur abîment l'œuvre ; Platon décrit un poète possédé, dépossédé de sa raison.</p>
+      <p><b>Plan.</b> Créer semble d'abord inséparable de la souffrance (I). Pourtant, la douleur empêche souvent de créer librement (II). La création demande plutôt de transformer l'épreuve en œuvre, dans un esprit apaisé (III).</p>
+    </div>
+
+    <h3 class="intro-h">La conclusion en 3 temps</h3>
+    <ol class="histo">
+      <li><span>1 · Bilan</span>Reprends le chemin parcouru en une phrase par partie.</li>
+      <li><span>2 · Réponse</span>Réponds clairement à la problématique, de façon nuancée.</li>
+      <li><span>3 · Ouverture</span>Élargis vers une question proche : l'intelligence artificielle peut-elle créer ? Une œuvre sans auteur est-elle encore une création ?</li>
+    </ol>
+  </section>
+
   <!-- RÉVISION -->
   <section id="revision" hidden>
     <div class="rev-top">
@@ -486,7 +781,7 @@ footer{margin-top:40px;color:var(--muted);font-size:13px;border-top:1px solid va
     <div class="xl-scroll"><table class="ess-table" id="essTable"></table></div>
   </section>
 
-  <footer>Fiches rédigées à partir des résumés détaillés et des présentations générales des deux œuvres. Les numéros de chapitre renvoient à l'œuvre choisie.</footer>
+  <footer>Fiches rédigées à partir des résumés détaillés et des présentations générales des trois œuvres. Les numéros de chapitre renvoient à l'œuvre choisie.</footer>
 </div>
 
 <script>
@@ -912,19 +1207,30 @@ $("#axes").addEventListener("click",e=>{
   if(card && document.body.classList.contains("revise")) card.classList.toggle("open");
 });
 
+const GLOBAL_VIEWS = {
+  intro:["Introduction","Woolf, <i>Un lieu à soi</i> · Zola, <i>L'Œuvre</i> · Platon, <i>Ion</i> et <i>La République</i> X. Le sens du thème, ses questions et ses repères, avant d'entrer dans les œuvres."],
+  essentiels:["Les incontournables","Woolf, Zola et Platon : 36 exemples polyvalents, classés par notion."],
+  revision:["Révision","Tous les exemples des fiches en cartes de révision, avec répétition espacée façon Anki."],
+  citations:["Citations","Des formules courtes à placer dans tes copies, à apprendre par cœur."],
+  personnages:["Personnages","Qui est qui dans les trois œuvres, et le vocabulaire du thème."],
+  quiz:["Quiz","Dix questions pour vérifier que tu connais les œuvres."],
+  plan:["Plan","Un sujet, une problématique et un plan qui croise les trois œuvres."],
+  methode:["Méthode","Introductions et conclusions : structure, accroches, définitions, modèles."]
+};
+const ALL_VIEWS = ["intro","presentation","fiches","tableau","essentiels","revision","citations","personnages","quiz","plan","methode"];
 function show(view){
+  if(!ALL_VIEWS.includes(view)) view = "intro";
   currentView = view;
-  document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected", t.dataset.view===view));
-  $("#presentation").hidden = view!=="presentation";
-  $("#fiches").hidden = view!=="fiches";
-  $("#tableau").hidden = view!=="tableau";
-  $("#essentiels").hidden = view!=="essentiels";
-  $("#revision").hidden = view!=="revision";
-  const global = view==="essentiels" || view==="revision";
-  document.querySelector(".works").hidden = global;
-  $("#h1work").textContent = view==="essentiels" ? "· Les incontournables" : view==="revision" ? "· Révision" : "· "+WORKS[work].label;
-  $("#subwork").innerHTML = view==="essentiels" ? "Woolf, Zola et Platon : 36 exemples polyvalents, classés par notion." : view==="revision" ? "Tous les exemples des fiches en cartes de révision, avec répétition espacée façon Anki." : WORKS[work].sub;
+  ALL_VIEWS.forEach(v=>{ const el = document.getElementById(v); if(el) el.hidden = v!==view; });
+  const g = GLOBAL_VIEWS[view];
+  document.querySelector(".works").hidden = true;
+  $("#subtabs").hidden = !!g;
+  document.querySelectorAll("#subtabs button").forEach(b=>b.setAttribute("aria-current", b.dataset.view===view));
+  $("#h1work").textContent = "· " + (g ? g[0] : WORKS[work].label);
+  $("#subwork").innerHTML = g ? g[1] : WORKS[work].sub;
   if(view==="revision" && window.ANKI) ANKI.refresh();
+  if(view==="quiz" && window.QUIZ) QUIZ.ensure();
+  if(typeof renderMenu==="function" && document.getElementById("drawer").classList.contains("open")) renderMenu();
 }
 $("#copyTable").addEventListener("click",()=>{
   const txt = tableauTSV();
@@ -942,11 +1248,48 @@ document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>{sho
 function fromHash(){
   const [w,v] = location.hash.slice(1).split("-");
   const wk = WORKS[w] ? w : (WORKS[v] ? v : "woolf");
-  const vw = ["presentation","tableau","fiches","essentiels","revision"].find(x=>x===v||x===w) || "fiches";
+  const vw = ALL_VIEWS.find(x=>x===v||x===w) || "intro";
   if(wk!==work || !$("#subwork").innerHTML) setWork(wk);
   show(vw);
 }
 window.addEventListener("hashchange",fromHash);
+const MENU = [
+  {items:[["intro",null,"Introduction générale"]]},
+  {title:"Les œuvres", items:[["presentation","woolf","Woolf","Un lieu à soi"],["presentation","zola","Zola","L'Œuvre"],["presentation","platon","Platon","Ion · République X"]]},
+  {title:"Les trois œuvres", items:[["essentiels",null,"Les incontournables"],["revision",null,"Révision Anki"]]},
+  {title:"Outils", items:[["citations",null,"Citations à retenir"],["personnages",null,"Personnages et lexique"],["quiz",null,"Quiz"],["plan",null,"Générateur de plan"],["methode",null,"Introduction et conclusion"]]}
+];
+function renderMenu(){
+  $("#drawerList").innerHTML = MENU.map(g=>`<div class="dgroup">${g.title?`<b>${g.title}</b>`:""}${g.items.map(([v,w,l,sub])=>{
+    const on = w ? (w===work && ["presentation","fiches","tableau"].includes(currentView)) : currentView===v;
+    return `<button type="button" class="ditem${(!g.title||w)?" top":""}" data-v="${v}" data-w="${w||""}" aria-current="${on}">${l}${sub?`<span class="ditem-sub">${sub}</span>`:""}</button>`;
+  }).join("")}</div>`).join("");
+}
+const wide = ()=>window.matchMedia("(min-width:900px)").matches;
+$("#subtabs").addEventListener("click", e=>{
+  const b = e.target.closest("button[data-view]"); if(!b) return;
+  show(b.dataset.view);
+  try{ history.replaceState(null,"","#"+work+"-"+b.dataset.view); }catch(_){}
+});
+function openMenu(focus){ renderMenu(); $("#drawer").classList.add("open"); document.body.classList.add("menu-open"); $("#drawer").setAttribute("aria-hidden","false"); $("#scrim").hidden = false; $("#menuBtn").setAttribute("aria-expanded","true"); $("#menuBtn").setAttribute("aria-label","Fermer le menu"); try{ localStorage.setItem("arcanes-menu","1"); }catch(_){} if(focus!==false) setTimeout(()=>{ const c = document.querySelector('.ditem[aria-current="true"]') || document.querySelector(".ditem"); c && c.focus({preventScroll:true}); }, 30); }
+function closeMenu(){ $("#drawer").classList.remove("open"); document.body.classList.remove("menu-open"); $("#drawer").setAttribute("aria-hidden","true"); $("#scrim").hidden = true; $("#menuBtn").setAttribute("aria-expanded","false"); $("#menuBtn").setAttribute("aria-label","Ouvrir le menu"); try{ localStorage.removeItem("arcanes-menu"); }catch(_){} }
+$("#menuBtn").addEventListener("click", ()=>{ $("#drawer").classList.contains("open") ? closeMenu() : openMenu(); });
+$("#menuClose").addEventListener("click", ()=>{ closeMenu(); $("#menuBtn").focus(); });
+$("#scrim").addEventListener("click", closeMenu);
+document.addEventListener("keydown", e=>{ if(e.key==="Escape" && $("#drawer").classList.contains("open")){ closeMenu(); $("#menuBtn").focus(); } });
+$("#drawerList").addEventListener("click", e=>{
+  const b = e.target.closest(".ditem"); if(!b) return;
+  if(b.dataset.w && b.dataset.w!==work) setWork(b.dataset.w);
+  show(b.dataset.v);
+  try{ history.replaceState(null,"","#"+work+"-"+b.dataset.v); }catch(_){}
+  if(wide()) renderMenu(); else closeMenu();
+  window.scrollTo({top:0, behavior:"smooth"});
+});
+$("#homeBtn").addEventListener("click",()=>{
+  show("intro"); if(!wide()) closeMenu();
+  try{ history.replaceState(null,"",location.pathname+location.search); }catch(_){}
+  window.scrollTo({top:0, behavior:"smooth"});
+});
 
 const ESS_ROWS = [
  {notion:"Le mystère de l'inspiration", idee:"D'où vient l'œuvre ? Elle semble naître d'une force qui dépasse le créateur : les dieux, le désir, une révélation, l'inconscient.",
@@ -1008,6 +1351,7 @@ $("#copyEss").addEventListener("click",()=>{
   try{ navigator.clipboard.writeText(essTSV()).then(()=>done("Copié : colle-le dans la cellule A1 d'Excel."),fallback); }catch(_){ fallback(); }
 });
 renderEss();
+try{ if(localStorage.getItem("arcanes-menu")==="1" && window.matchMedia("(min-width:900px)").matches) setTimeout(()=>openMenu(false), 0); }catch(_){}
 
 /* ===== Révision façon Anki (SM-2) ===== */
 window.ANKI = (()=>{
@@ -1164,6 +1508,291 @@ window.ANKI = (()=>{
   })();
   return {refresh};
 })();
+/* ===== Outils : données ===== */
+const WORK_LABEL = {woolf:"Woolf", zola:"Zola", platon:"Platon"};
+const CITES = {
+ woolf:[
+  ["une femme doit avoir de l'argent et un lieu à elle si elle veut écrire de la fiction","Chap. I","Conditions","La thèse de l'essai : la création dépend de conditions matérielles."],
+  ["gribouillis sauvage","Chap. II","Processus","Ses notes désordonnées face à un étudiant méthodique : la pensée créatrice n'est pas une méthode."],
+  ["de l'infériorité mentale, morale et physique du sexe féminin","Chap. II","Jugement","Titre du traité du professeur von X : le mépris qui pèse sur les créatrices."],
+  ["serviles, ignorants et laborieux","Chap. III","Conditions","La classe d'où aucun génie ne peut naître : le génie a besoin de liberté."],
+  ["intelligence sauvage","Chap. IV","Échec","Margaret Cavendish : un génie sans soutien ni cadre se consume."],
+  ["intègre","Chap. IV","Vérité","Un roman est « intègre » quand il nous convainc que ce qu'il dit de la vie est vrai."],
+  ["Chloé aimait Olivia","Chap. V","Vérité","La création ouvre un territoire jamais raconté."],
+  ["toujours suspect","Chap. V","Jugement","Faire l'éloge de son propre sexe : le parti pris éloigne de la vérité."],
+  ["ce travail, même dans la pauvreté et l'obscurité, vaut la peine","Chap. VI","Conclusion","Dernier mot de l'essai : créer reste un effort qui vaut d'être tenté."]
+ ],
+ zola:[
+  ["impuissances soudaines et inexpliquées","Chap. II","Échec","Le blocage créatif reste un mystère, même pour le génie."],
+  ["les choses et les êtres tels qu'ils se comportent dans de la vraie lumière","Chap. II","Vérité","Le programme de Claude : peindre le réel sans idéaliser."],
+  ["l'imbécillité bourgeoise","Chap. V","Jugement","Le public rit de Plein air sans le comprendre."],
+  ["l'antique routine","Chap. V","Modernité","Ce que la nouvelle peinture veut renverser."],
+  ["toutes les habitudes de l'œil","Chap. VIII","Vérité","La peinture nouvelle dérange parce qu'elle montre ce qu'on ne regarde pas."],
+  ["superbe et héroïque","Chap. VIII","Mystère","L'œuvre suivante rêvée, toujours parfaite tant qu'elle n'existe pas : un « mirage »."],
+  ["talent menteur","Chap. VII","Marché","Les peintres sans génie que le marchand Naudet fait monter."],
+  ["mannequin vivant","Chap. IX","Désir","Christine n'est plus qu'un modèle : l'œuvre a remplacé la femme."],
+  ["impuissance fatale","Chap. IX","Échec","Claude recommence sans fin la même toile."],
+  ["adoucie, truquée, gâtée","Chap. X","Jugement","La copie de Fagerolles, qui triomphe là où l'original a été moqué."],
+  ["l'œuvre manquée de sa vie","Chap. XI","Échec","La grande toile qu'il ne finira jamais."]
+ ],
+ platon:[
+  ["possédés","Ion","Mystère","Les poètes composent hors d'eux-mêmes, sous l'emprise des muses."],
+  ["puissance divine","Ion","Mystère","Ce que les dieux insufflent au poète : l'inspiration vient d'ailleurs."],
+  ["le premier anneau … l'anneau du milieu … le dernier de ces anneaux","Ion","Transmission","Poète, rhapsode, spectateur : la chaîne de l'inspiration."],
+  ["homme divin","Ion","Statut","Ce que choisit d'être Ion plutôt qu'imposteur."],
+  ["poésie qui est imitative","Rép. X, 595a","Cité","La poésie qu'il faut rejeter de la cité idéale."],
+  ["créateur naturel","Rép. X, 597","Vérité","Le dieu, seul auteur de la forme du lit : la seule vraie création."],
+  ["éloigné du vrai","Rép. X, 598","Vérité","L'artiste imitateur, au troisième rang après l'Idée et l'objet."],
+  ["simulacres","Rép. X, 599-600","Vérité","Ce que produit le poète : l'apparence de la vertu, pas la vertu."],
+  ["caractère excitable et bariolé","Rép. X, 604-605","Passions","Ce que l'art préfère représenter, plutôt que l'homme calme."],
+  ["pires et misérables","Rép. X, 606","Passions","Ce que nous rend la poésie qui irrigue nos passions."],
+  ["passion amoureuse","Rép. X, 607-608","Cité","Renoncer à l'art comme à un amour qui fait du mal."]
+ ]
+};
+const PERSOS = [
+ ["Mary (narratrice)","woolf","Narratrice fictive derrière laquelle Woolf se cache pour raconter ses trois jours de réflexion."],
+ ["La tante de Mary","woolf","Lui lègue un héritage qui la libère du besoin et de l'amertume (Chap. II)."],
+ ["Mary Seton","woolf","Amie de la narratrice à Fernham ; explique pourquoi le collège des femmes est pauvre (Chap. I)."],
+ ["Mary Carmichael","woolf","Romancière imaginaire qui écrit sans peur ni haine des hommes (Chap. V)."],
+ ["La sœur de Shakespeare","woolf","Personnage imaginaire aussi doué que son frère, détruit faute d'éducation et de liberté (Chap. III)."],
+ ["Le professeur von X","woolf","Universitaire fictif, auteur d'un traité sur l'infériorité des femmes (Chap. II)."],
+ ["Mr A","woolf","Romancier fictif dont le « je » viril envahit le livre (Chap. VI)."],
+ ["Shakespeare","woolf","Modèle de l'esprit libre et androgyne, sans obstacle intérieur (Chap. III et VI)."],
+ ["Lady Winchilsea","woolf","Poétesse dont l'œuvre est abîmée par la colère et l'amertume (Chap. IV)."],
+ ["Margaret Cavendish","woolf","Écrivaine au génie « sauvage », consumée par la rage (Chap. IV)."],
+ ["Dorothy Osborne","woolf","Épistolière douée qui jugeait ridicule qu'une femme écrive (Chap. IV)."],
+ ["Aphra Behn","woolf","Première femme de la classe moyenne à vivre de sa plume (Chap. IV)."],
+ ["Jane Austen","woolf","Écrit sans amertume et cache ses manuscrits dans la pièce commune (Chap. IV)."],
+ ["Charlotte Brontë","woolf","Son indignation personnelle déforme Jane Eyre (Chap. IV)."],
+ ["George Eliot","woolf","Vit seule mais recluse, privée de l'expérience du monde (Chap. IV)."],
+ ["Claude Lantier","zola","Peintre de génie, fils de Gervaise, qui ne parvient jamais au chef-d'œuvre et se pend devant sa toile."],
+ ["Christine","zola","Jeune orpheline venue de Clermont, modèle, compagne puis épouse de Claude, rivale de sa peinture."],
+ ["Jacques","zola","Fils de Claude et Christine, fragile ; Claude peint son cadavre (L'Enfant mort)."],
+ ["Pierre Sandoz","zola","Écrivain, ami d'enfance de Claude, double de Zola ; prépare une vaste série de romans."],
+ ["Henriette","zola","Épouse de Sandoz, qui reçoit la bande le jeudi."],
+ ["Louis Dubuche","zola","Ami d'enfance devenu architecte ; épouse par intérêt la fille du riche Margaillan."],
+ ["Margaillan","zola","Riche entrepreneur de travaux publics, beau-père de Dubuche."],
+ ["Henri Fagerolles","zola","Élève des Beaux-Arts qui copie et adoucit le style de Claude et réussit."],
+ ["Mahoudeau","zola","Sculpteur pauvre de Plassans ; sa grande Baigneuse s'effondre."],
+ ["Chaîne","zola","Peintre pauvre et maladroit, qui finit par travailler dans les fêtes foraines."],
+ ["Jory","zola","Critique d'art opportuniste devenu directeur de revue ; épouse Mathilde."],
+ ["Mathilde","zola","Modèle de Mahoudeau, puis épouse de Jory, qu'elle manipule."],
+ ["Gagnière","zola","Peintre consciencieux et sans audace, passionné de musique."],
+ ["Irma Bécot","zola","Jeune femme séductrice qui s'enrichit grâce à ses amants ; désire Claude."],
+ ["Bongrand","zola","Vieux maître admiré, lucide sur la difficulté de créer et sur les illusions de la gloire."],
+ ["Le père Malgras","zola","Marchand d'art rusé qui achète les esquisses de Claude."],
+ ["Naudet","zola","Marchand spéculateur qui fait monter la cote des peintres, puis fait faillite."],
+ ["Mme Vanzade","zola","Riche veuve aveugle chez qui Christine est lectrice."],
+ ["Chambouvard","zola","Sculpteur célèbre et vaniteux qui ne doute jamais de lui."],
+ ["Mazel","zola","Maître de l'École des Beaux-Arts qui dirige le jury du Salon."],
+ ["Socrate","platon","Philosophe qui interroge ses interlocuteurs et les pousse à se contredire."],
+ ["Ion","platon","Rhapsode vaniteux spécialiste d'Homère, vainqueur d'un concours à Épidaure."],
+ ["Glaucon","platon","Interlocuteur de Socrate au livre X de La République, frère de Platon."],
+ ["Homère","platon","Poète de l'Iliade et de l'Odyssée, modèle de la poésie épique."],
+ ["Tynnichos de Chalcis","platon","Poète médiocre qui n'a écrit qu'un seul poème, peut-être le plus beau de tous."],
+ ["Les muses","platon","Divinités qui inspirent les poètes et les possèdent."]
+];
+const LEXIQUE = [
+ ["Arcane","Du latin arca, le coffre : secret, ce qui est réservé aux initiés.","Introduction : définir le thème."],
+ ["Technè","Savoir-faire précis appliqué à un domaine (médecine, menuiserie). Traduit par « art ».","Platon : savoir contre inspiration."],
+ ["Mimésis","Imitation du réel par l'art. Pour Platon, une copie de copie.","Platon, Rép. X : art et vérité."],
+ ["Idée (forme)","Essence d'une chose, modèle parfait accessible par la raison.","Platon : les trois lits."],
+ ["Monde intelligible / sensible","Le monde des Idées (raison) opposé au monde des apparences (sens).","Platon : illusion de l'art."],
+ ["Simulacre","Ce qui n'a que l'apparence de ce qu'il prétend être.","Platon : l'œuvre au 3e rang."],
+ ["Rhapsode","Récitant de poèmes épiques, intermédiaire entre le poète et le public.","Platon, Ion : la chaîne."],
+ ["Inspiration","Élan créatif qui semble venir d'ailleurs ; d'origine divine chez Platon.","Origine de la création."],
+ ["Démiurge","Artisan divin qui ordonne le monde d'après les Idées (Timée de Platon).","Modèle divin de la création."],
+ ["Création ex nihilo","Création à partir de rien, longtemps réservée à Dieu.","Histoire de la notion."],
+ ["Arts mécaniques / libéraux","Arts de la main contre arts de l'esprit : hiérarchie du Moyen Âge.","Statut de l'artiste."],
+ ["Génie","Don naturel d'invention ; valeur centrale à partir du XVIIIe siècle.","Don contre travail."],
+ ["Art académique","Art réglé par l'Académie des Beaux-Arts : sujets nobles, idéalisation.","Zola : création contre règles."],
+ ["Salon des Refusés","Exposition de 1863 des œuvres refusées au Salon officiel.","Zola, chap. V : le public."],
+ ["Réalisme","Représenter la vie quotidienne et le peuple sans idéaliser (Courbet).","Zola : vérité de l'art."],
+ ["Impressionnisme (plein air)","Peindre dehors la lumière réelle par taches de couleur (Manet, Claude).","Zola : modernité."],
+ ["Naturalisme","Roman documenté qui étudie l'homme dans son milieu (Zola, Sandoz).","Zola : mise en abyme."],
+ ["Esprit androgyne","Esprit où les parts masculine et féminine s'accordent, état propice à créer.","Woolf, chap. VI."],
+ ["Un lieu à soi","Espace et indépendance matérielle pour penser et écrire librement.","Woolf : conditions."],
+ ["Essai","Genre où l'auteur expose ses idées ; ici mêlé de fiction et d'autobiographie.","Woolf : forme de l'œuvre."]
+];
+
+/* ===== Citations ===== */
+(()=>{
+  let f = "all";
+  const chips = [["all","Toutes"],["woolf","Woolf"],["zola","Zola"],["platon","Platon"]];
+  function render(){
+    $("#citeChips").innerHTML = chips.map(([k,l])=>`<button class="chip" type="button" data-k="${k}" aria-pressed="${f===k}">${l}</button>`).join("");
+    $("#citeList").innerHTML = Object.keys(CITES).filter(w=>f==="all"||f===w).map(w=>`<div class="cite-group"><h3 class="intro-h">${WORK_LABEL[w]}</h3><div class="cite-grid">${CITES[w].map(([c,r,n,u])=>`<figure class="cite"><blockquote><span class="cite-txt">« ${esc(c)} »</span><button type="button" class="cite-mask">Afficher la citation</button></blockquote><figcaption><span class="tag">${esc(n)}</span> <span class="ch">(${esc(r)})</span><span class="use">${esc(u)}</span></figcaption></figure>`).join("")}</div></div>`).join("");
+  }
+  $("#citeChips").addEventListener("click",e=>{ const b=e.target.closest("[data-k]"); if(!b) return; f=b.dataset.k; render(); });
+  $("#citeHide").addEventListener("click",e=>{ const on=!document.body.classList.contains("cite-hide"); document.body.classList.toggle("cite-hide",on); e.currentTarget.setAttribute("aria-pressed",on); document.querySelectorAll(".cite.open").forEach(x=>x.classList.remove("open")); });
+  $("#citeList").addEventListener("click",e=>{ const c=e.target.closest(".cite"); if(c && document.body.classList.contains("cite-hide")) c.classList.toggle("open"); });
+  render();
+})();
+
+/* ===== Personnages et lexique ===== */
+(()=>{
+  let f = "all";
+  const chips = [["all","Tous"],["woolf","Woolf"],["zola","Zola"],["platon","Platon"]];
+  function render(){
+    const q = norm($("#persoQ").value.trim());
+    $("#persoChips").innerHTML = chips.map(([k,l])=>`<button class="chip" type="button" data-k="${k}" aria-pressed="${f===k}">${l}</button>`).join("");
+    const list = PERSOS.filter(([n,w,d])=>(f==="all"||f===w) && (!q || norm(n+" "+d).includes(q)));
+    $("#persoGrid").innerHTML = list.length ? list.map(([n,w,d])=>`<div class="perso"><b>${esc(n)}</b><span class="tag">${WORK_LABEL[w]}</span><p>${esc(d)}</p></div>`).join("") : `<p class="empty">Aucun personnage ne correspond.</p>`;
+  }
+  $("#persoChips").addEventListener("click",e=>{ const b=e.target.closest("[data-k]"); if(!b) return; f=b.dataset.k; render(); });
+  $("#persoQ").addEventListener("input",render);
+  $("#lexBody").innerHTML = LEXIQUE.map(([t,d,u])=>`<tr><td><b>${esc(t)}</b></td><td>${esc(d)}</td><td>${esc(u)}</td></tr>`).join("");
+  render();
+})();
+
+/* ===== Quiz ===== */
+window.QUIZ = (()=>{
+  const N = 10;
+  let scope = "all", qs = [], i = 0, score = 0, done = false, answered = false;
+  const shuffle = a => { a = a.slice(); for(let k=a.length-1;k>0;k--){ const j=Math.floor(Math.random()*(k+1)); [a[k],a[j]]=[a[j],a[k]]; } return a; };
+  const pickN = (a,n) => shuffle(a).slice(0,n);
+  const inScope = w => scope==="all" || scope===w;
+  function examples(){ const out=[]; ["woolf","zola","platon"].forEach(w=>WORKS[w].axes.forEach(a=>a.ex.forEach(e=>out.push({w, t:e.t, ch:e.ch, ref:e.ref||("Chap. "+e.ch), d:e.d, axe:a.titre})))); return out; }
+  function build(){
+    const ex = examples(), exS = ex.filter(e=>inScope(e.w)), out = [];
+    const makers = [
+      ()=>{ if(scope!=="all") return null; const e = pickN(ex,1)[0]; return {meta:"De quelle œuvre ?", q:`« ${e.t} » est un exemple tiré de…`, opts:shuffle(["Woolf","Zola","Platon"]), ok:WORK_LABEL[e.w], expl:`${WORK_LABEL[e.w]} (${e.ref}) : ${e.d}`}; },
+      ()=>{ const pool = exS.filter(e=>e.w!=="platon"); if(!pool.length) return null; const e = pickN(pool,1)[0]; const all = ROMAN.slice(0, WORKS[e.w].nch); const opts = shuffle([e.ch, ...pickN(all.filter(r=>r!==e.ch),3)]).map(r=>"Chap. "+r); return {meta:`Chapitre · ${WORK_LABEL[e.w]}`, q:`Dans quel chapitre se trouve « ${e.t} » ?`, opts, ok:"Chap. "+e.ch, expl:e.d}; },
+      ()=>{ const e = pickN(exS,1)[0]; const others = pickN(WORKS[e.w].axes.map(a=>a.titre).filter(t=>t!==e.axe),3); return {meta:`Axe · ${WORK_LABEL[e.w]}`, q:`À quel axe se rattache « ${e.t} » ?`, opts:shuffle([e.axe,...others]), ok:e.axe, expl:e.d}; },
+      ()=>{ const pool = PERSOS.filter(p=>inScope(p[1])); const p = pickN(pool,1)[0]; const same = PERSOS.filter(x=>x[1]===p[1] && x[0]!==p[0]); return {meta:`Personnage · ${WORK_LABEL[p[1]]}`, q:`Qui est ${p[0]} ?`, opts:shuffle([p[2],...pickN(same,3).map(x=>x[2])]), ok:p[2], expl:p[2]}; },
+      ()=>{ const pool = Object.keys(CITES).filter(inScope).flatMap(w=>CITES[w].map(c=>({w,c}))); const x = pickN(pool,1)[0]; if(scope==="all") return {meta:"Citation", q:`Qui a écrit : « ${x.c[0]} » ?`, opts:shuffle(["Woolf","Zola","Platon"]), ok:WORK_LABEL[x.w], expl:`${WORK_LABEL[x.w]} (${x.c[1]}) : ${x.c[3]}`}; const others = pickN(CITES[x.w].filter(c=>c!==x.c),3).map(c=>c[3]); return {meta:`Citation · ${WORK_LABEL[x.w]}`, q:`Que signifie « ${x.c[0]} » dans l'œuvre ?`, opts:shuffle([x.c[3],...others]), ok:x.c[3], expl:`(${x.c[1]})`}; },
+      ()=>{ const l = pickN(LEXIQUE,1)[0]; return {meta:"Notion", q:`Que désigne « ${l[0]} » ?`, opts:shuffle([l[1],...pickN(LEXIQUE.filter(x=>x!==l),3).map(x=>x[1])]), ok:l[1], expl:l[2]}; }
+    ];
+    const seen = new Set(); let guard = 0;
+    while(out.length<N && guard++<200){ const q = makers[Math.floor(Math.random()*makers.length)](); if(q && !seen.has(q.q)){ seen.add(q.q); out.push(q); } }
+    return out;
+  }
+  function best(){ try{ return +localStorage.getItem("arcanes-quiz-best")||0; }catch(_){ return 0; } }
+  function setBest(s){ try{ if(s>best()) localStorage.setItem("arcanes-quiz-best", s); }catch(_){} }
+  function start(){ qs = build(); i = 0; score = 0; done = false; answered = false; render(); }
+  function render(){
+    $("#quizChips").innerHTML = [["all","Les trois œuvres"],["woolf","Woolf"],["zola","Zola"],["platon","Platon"]].map(([k,l])=>`<button class="chip" type="button" data-k="${k}" aria-pressed="${scope===k}">${l}</button>`).join("");
+    $("#quizBest").textContent = best() ? `Meilleur score : ${best()} / ${N}` : "";
+    if(done){
+      $("#qMeta").textContent = "Résultat";
+      $("#qText").textContent = `${score} / ${N}`;
+      $("#qOpts").innerHTML = `<p class="quiz-end">${score>=8?"Très bien, tu maîtrises les œuvres.":score>=5?"Pas mal. Revois les fiches des questions ratées.":"À retravailler : passe par la révision Anki."}</p>`;
+      $("#qFeed").hidden = true; $("#qNext").hidden = false; $("#qNext").textContent = "Recommencer un quiz"; return;
+    }
+    const q = qs[i];
+    $("#qMeta").textContent = `Question ${i+1} / ${N} · ${q.meta} · score ${score}`;
+    $("#qText").textContent = q.q;
+    $("#qOpts").innerHTML = q.opts.map((o,k)=>`<button type="button" class="qopt" data-k="${k}"><kbd>${k+1}</kbd><span>${esc(o)}</span></button>`).join("");
+    $("#qFeed").hidden = true; $("#qNext").hidden = true; answered = false;
+  }
+  function answer(k){
+    if(answered || done) return; answered = true;
+    const q = qs[i], picked = q.opts[k], good = picked===q.ok;
+    if(good) score++;
+    document.querySelectorAll(".qopt").forEach((b,j)=>{ b.disabled = true; if(q.opts[j]===q.ok) b.classList.add("right"); else if(j===k) b.classList.add("wrong"); });
+    $("#qFeed").hidden = false; $("#qFeed").innerHTML = `<b>${good?"Exact.":"Non."}</b> ${esc(q.expl)}`;
+    $("#qNext").hidden = false; $("#qNext").textContent = i+1<N ? "Question suivante" : "Voir le résultat";
+    $("#qMeta").textContent = `Question ${i+1} / ${N} · ${q.meta} · score ${score}`;
+  }
+  function next(){ if(done){ start(); return; } if(i+1<N){ i++; render(); } else { done = true; setBest(score); render(); } }
+  $("#qOpts").addEventListener("click",e=>{ const b=e.target.closest(".qopt"); if(b) answer(+b.dataset.k); });
+  $("#qNext").addEventListener("click", next);
+  $("#quizChips").addEventListener("click",e=>{ const b=e.target.closest("[data-k]"); if(!b) return; scope=b.dataset.k; start(); });
+  document.addEventListener("keydown",e=>{
+    if($("#quiz").hidden || e.metaKey || e.ctrlKey || e.altKey || /^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName)) return;
+    if(!answered && !done && /^[1-4]$/.test(e.key)){ e.preventDefault(); answer(+e.key-1); }
+    else if((answered || done) && (e.key==="Enter" || e.key===" ")){ e.preventDefault(); next(); }
+  });
+  return {ensure(){ if(!qs.length) start(); }};
+})();
+
+/* ===== Générateur de plan ===== */
+(()=>{
+  const IDEAS = ["Le génie suffit-il à créer ?","Peut-on expliquer une œuvre ?","Créer, est-ce souffrir ?","L'artiste est-il maître de ce qu'il crée ?","La création a-t-elle besoin de règles ?"];
+  $("#planIdeas").innerHTML = IDEAS.map(s=>`<button class="chip" type="button">${esc(s)}</button>`).join("");
+  $("#planIdeas").addEventListener("click",e=>{ const b=e.target.closest(".chip"); if(b){ $("#planSujet").value = b.textContent; $("#planSujet").focus(); } });
+  let samp = null, ctl = null, lastText = "";
+  const ready = (window.claude && window.claude.use) ? window.claude.use("sample").then(s=>{ samp = s; return s; }).catch(()=>null) : Promise.resolve(null);
+  function corpus(){
+    return ["woolf","zola","platon"].map(w=>{
+      const head = {woolf:"WOOLF, Un lieu à soi (1929)", zola:"ZOLA, L'Œuvre (1886)", platon:"PLATON, Ion et La République livre X"}[w];
+      return head + "\n" + WORKS[w].axes.map(a=>"- Axe « "+a.titre+" » : "+a.ex.map(e=>e.t+" ("+(e.ref||"Chap. "+e.ch)+") = "+e.d.split(". ")[0]).join(" | ")).join("\n");
+    }).join("\n\n");
+  }
+  function md(t){
+    const lines = esc(t).split("\n"); let html = "", list = false;
+    const inline = s => s.replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/(^|[^*])\*(?!\s)(.+?)\*/g,"$1<i>$2</i>");
+    for(const raw of lines){
+      const l = raw.trim();
+      const close = ()=>{ if(list){ html += "</ul>"; list = false; } };
+      if(!l){ close(); continue; }
+      let m;
+      if((m = l.match(/^(#{1,4})\s+(.*)$/))){ close(); const lv = Math.min(4, m[1].length+1); html += `<h${lv}>${inline(m[2])}</h${lv}>`; }
+      else if((m = l.match(/^[-•*]\s+(.*)$/))){ if(!list){ html += "<ul>"; list = true; } html += `<li>${inline(m[1])}</li>`; }
+      else { close(); html += `<p>${inline(l)}</p>`; }
+    }
+    if(list) html += "</ul>";
+    return html;
+  }
+  async function go(){
+    const sujet = $("#planSujet").value.trim();
+    if(!sujet){ $("#planMsg").textContent = "Écris d'abord un sujet."; $("#planSujet").focus(); return; }
+    await ready;
+    if(!samp){ $("#planMsg").textContent = "Le générateur n'est pas disponible ici. Ouvre le site depuis claude.ai, connecté à ton compte."; return; }
+    ctl = new AbortController();
+    $("#planGo").disabled = true; $("#planStop").hidden = false; $("#planCopy").hidden = true;
+    $("#planMsg").textContent = "Claude réfléchit…"; $("#planOut").hidden = false; $("#planOut").innerHTML = `<p class="muted">Rédaction du plan en cours…</p>`;
+    const prompt = `Tu es professeur de français-philosophie en classe préparatoire scientifique. Thème au programme : « Les arcanes de la création ». Œuvres : Platon (Ion, La République livre X), Zola (L'Œuvre), Woolf (Un lieu à soi).
+
+Voici les exemples dont dispose l'élève, classés par œuvre et par axe :
+
+${corpus()}
+
+Sujet de dissertation : « ${sujet} »
+
+Rédige en français, de façon concise et précise, en Markdown simple (titres avec ##, listes avec -, gras avec **). Structure attendue :
+## Analyse du sujet
+Définis les termes clés et dis où est la tension (4 lignes maximum).
+## Problématique
+Une seule question.
+## Plan
+Trois parties (### I, ### II, ### III). Pour chaque partie : sa thèse en une phrase, puis deux ou trois sous-parties (A, B, C) en liste. Dans chaque sous-partie, donne l'argument puis un exemple de chacune des trois œuvres, choisi uniquement dans la liste ci-dessus, cité par son titre et sa référence entre parenthèses, suivi d'une courte phrase qui le relie à l'argument.
+## Ouverture
+Une phrase.
+
+N'invente ni citation ni exemple absent de la liste. Pas de préambule.`;
+    try{
+      const r = await samp(prompt, {signal: ctl.signal, cache: false, onText: ({text})=>{ lastText = text; $("#planOut").innerHTML = md(text); $("#planMsg").textContent = "Rédaction en cours…"; }});
+      lastText = r.text; $("#planOut").innerHTML = md(r.text);
+      $("#planMsg").textContent = r.truncated ? "Réponse coupée : relance avec un sujet plus court." : "Plan prêt.";
+      $("#planCopy").hidden = false;
+    }catch(e){
+      const map = {cancelled:"Arrêté.", not_granted:"Tu n'as pas autorisé le site à interroger Claude.", rate_limited:"Trop de demandes : attends un peu avant de relancer."};
+      $("#planMsg").textContent = map[e && e.code] || "La génération a échoué. Réessaie dans un instant.";
+      if(e && e.text){ lastText = e.text; $("#planOut").innerHTML = md(e.text); $("#planCopy").hidden = false; }
+    }finally{ $("#planGo").disabled = false; $("#planStop").hidden = true; ctl = null; }
+  }
+  $("#planGo").addEventListener("click", go);
+  $("#planStop").addEventListener("click", ()=>{ if(ctl) ctl.abort(); });
+  $("#planCopy").addEventListener("click", ()=>{
+    const done = m => { $("#planMsg").textContent = m; };
+    try{ navigator.clipboard.writeText(lastText).then(()=>done("Plan copié."),()=>{ const r=document.createRange(); r.selectNodeContents($("#planOut")); const s=getSelection(); s.removeAllRanges(); s.addRange(r); done("Plan sélectionné : fais Ctrl+C (ou Cmd+C)."); }); }catch(_){}
+  });
+})();
+
+/* ===== Thème clair / sombre ===== */
+(()=>{
+  const ORDER = ["auto","light","dark"], LABEL = {auto:"Auto", light:"Clair", dark:"Sombre"};
+  let t = "auto"; try{ t = localStorage.getItem("arcanes-theme") || "auto"; }catch(_){}
+  function apply(){
+    if(t==="auto") document.documentElement.removeAttribute("data-theme"); else document.documentElement.setAttribute("data-theme", t);
+    $("#themeBtn").innerHTML = `<span class="theme-ico" aria-hidden="true"></span>${LABEL[t]}`;
+    $("#themeBtn").setAttribute("aria-label", "Thème : " + LABEL[t] + ". Cliquer pour changer.");
+  }
+  $("#themeBtn").addEventListener("click", ()=>{ t = ORDER[(ORDER.indexOf(t)+1)%3]; try{ localStorage.setItem("arcanes-theme", t); }catch(_){} apply(); });
+  apply();
+})();
+
 fromHash();
 </script>
 
