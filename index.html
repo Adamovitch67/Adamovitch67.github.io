@@ -213,6 +213,7 @@ header{border-bottom:1px solid var(--line)}
 .dgroup>b{display:block;font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.07em;color:var(--brass);margin:2px 0 6px 10px}
 .ditem{display:block;width:100%;text-align:left;font:500 15px var(--body);color:var(--ink);background:none;border:0;border-radius:6px;padding:8px 10px;cursor:pointer}
 .ditem:hover{background:var(--bg)}
+a.ditem{text-decoration:none}
 .ditem[aria-current="true"]{background:var(--accent-soft);color:var(--accent);font-weight:700}
 .ditem.top{font:400 21px var(--display)}
 .themebtn{margin-left:auto;display:inline-flex;align-items:center;gap:8px;font:600 13px var(--body);color:var(--ink);padding:6px 12px;border:1px solid var(--line);border-radius:6px;background:var(--paper);cursor:pointer}
@@ -1257,10 +1258,11 @@ const MENU = [
   {items:[["intro",null,"Introduction générale"]]},
   {title:"Les œuvres", items:[["presentation","woolf","Woolf","Un lieu à soi"],["presentation","zola","Zola","L'Œuvre"],["presentation","platon","Platon","Ion · République X"]]},
   {title:"Les trois œuvres", items:[["essentiels",null,"Les incontournables"],["revision",null,"Révision Anki"]]},
-  {title:"Outils", items:[["citations",null,"Citations à retenir"],["personnages",null,"Personnages et lexique"],["quiz",null,"Quiz"],["plan",null,"Générateur de plan"],["methode",null,"Introduction et conclusion"]]}
+  {title:"Outils", items:[["citations",null,"Citations à retenir"],["personnages",null,"Personnages et lexique"],["quiz",null,"Quiz"],["plan",null,"Générateur de plan"],["methode",null,"Introduction et conclusion"],["",null,"Avoir 20/20",null,"https://youtu.be/dQw4w9WgXcQ?si=uqqTh6SmuwDhjEP8"]]}
 ];
 function renderMenu(){
-  $("#drawerList").innerHTML = MENU.map(g=>`<div class="dgroup">${g.title?`<b>${g.title}</b>`:""}${g.items.map(([v,w,l,sub])=>{
+  $("#drawerList").innerHTML = MENU.map(g=>`<div class="dgroup">${g.title?`<b>${g.title}</b>`:""}${g.items.map(([v,w,l,sub,url])=>{
+    if(url) return `<a class="ditem" href="${url}" target="_blank" rel="noopener noreferrer">${l}</a>`;
     const on = w ? (w===work && ["presentation","fiches","tableau"].includes(currentView)) : currentView===v;
     return `<button type="button" class="ditem${(!g.title||w)?" top":""}" data-v="${v}" data-w="${w||""}" aria-current="${on}">${l}${sub?`<span class="ditem-sub">${sub}</span>`:""}</button>`;
   }).join("")}</div>`).join("");
