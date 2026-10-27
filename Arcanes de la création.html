@@ -1,0 +1,1166 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Arcanes de la création</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout : en-tête-titre, onglets Présentation / Fiches, grille d'axes façon tableau Excel (une ligne = un axe, une cellule = un exemple) */
+:root{
+  --bg:#f2f3f7; --paper:#ffffff; --ink:#1b1d2e; --muted:#5d6077; --line:#d9dbe6;
+  --accent:#3d3a8c; --accent-soft:#e6e5f5; --brass:#8a6a1f; --brass-soft:#f3ecd9;
+  --xl-head:#c6e3b4; --xl-head-ink:#1b1d2e; --xl-grid:#d4d6de;
+  --display:"Instrument Serif", Georgia, "Times New Roman", serif;
+  --body:"Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#13141d; --paper:#1c1e2b; --ink:#e8e8f0; --muted:#a2a4bb; --line:#2f3245;
+  --accent:#a9a5ff; --accent-soft:#2a2850; --brass:#d9b763; --brass-soft:#33291a; --xl-head:#33502a; --xl-head-ink:#e8f3e0; --xl-grid:#363a50; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#13141d; --paper:#1c1e2b; --ink:#e8e8f0; --muted:#a2a4bb; --line:#2f3245;
+  --accent:#a9a5ff; --accent-soft:#2a2850; --brass:#d9b763; --brass-soft:#33291a; --xl-head:#33502a; --xl-head-ink:#e8f3e0; --xl-grid:#363a50; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+.wrap{max-width:1180px;margin:0 auto}
+header{padding-block:40px 20px;display:grid;gap:10px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--brass)}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(38px,6vw,64px);line-height:1;margin:0;text-wrap:balance}
+h1 em{color:var(--accent)}
+.sub{color:var(--muted);max-width:62ch;margin:0}
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;gap:6px;padding-block:10px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.tab{font:600 14px var(--body);border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:8px 14px;border-radius:6px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.tab:focus-visible,.chip:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+section{padding-top:28px}
+h2{font-family:var(--display);font-weight:400;font-size:34px;margin:0 0 6px;text-wrap:balance}
+h3{font-size:13px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.07em;color:var(--brass);margin:0 0 8px;font-weight:500}
+
+/* Présentation */
+.pres-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:14px;margin-top:16px}
+.box{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:18px;min-width:0}
+.box p{margin:0 0 8px}.box p:last-child{margin:0}
+.box ul{margin:0;padding-left:18px;display:grid;gap:4px}
+.key{font-weight:700;color:var(--accent)}
+.quote{font-family:var(--display);font-size:22px;line-height:1.25;color:var(--accent);margin:4px 0 8px}
+.table-scroll{overflow-x:auto;margin-top:14px;border:1px solid var(--line);border-radius:8px;background:var(--paper)}
+table{border-collapse:collapse;width:100%;min-width:620px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:500 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);background:var(--accent-soft)}
+tr:last-child td{border-bottom:0}
+.mode{display:inline-block;font:500 11px var(--mono);padding:2px 7px;border-radius:4px;white-space:nowrap}
+.mode.conf{background:var(--brass-soft);color:var(--brass)}
+.mode.recit{background:var(--accent-soft);color:var(--accent)}
+.timeline{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.timeline span{font:500 12px var(--mono);padding:4px 8px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+
+/* Fiches */
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:14px 0 6px}
+.tools input{flex:1 1 220px;min-width:0;font:15px var(--body);padding:9px 12px;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:500 12px var(--mono);padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--ink);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.toggle{font:600 13px var(--body);padding:8px 12px;border:1px solid var(--brass);color:var(--brass);background:transparent;border-radius:6px;cursor:pointer}
+.toggle[aria-pressed="true"]{background:var(--brass);color:var(--paper)}
+.count{font:12px var(--mono);color:var(--muted)}
+.axe{margin-top:26px}
+.axe-head{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:baseline;padding-bottom:10px;border-bottom:2px solid var(--ink);margin-bottom:12px}
+.axe-num{font-family:var(--display);font-size:40px;line-height:1;color:var(--brass)}
+.axe-title{font-family:var(--display);font-size:26px;line-height:1.15;text-wrap:balance;margin:0}
+.axe-idea{grid-column:2;color:var(--muted);font-size:14px;margin:0}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:12px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:14px 16px;min-width:0;display:flex;flex-direction:column;gap:8px}
+.card .t{font-weight:700;margin:0}
+.card .t .ch{font-weight:500;color:var(--accent);white-space:nowrap}
+.card .d{margin:0;color:var(--ink)}
+.card .reveal{display:none;font:500 12px var(--mono);color:var(--muted);background:none;border:1px dashed var(--line);border-radius:4px;padding:8px;cursor:pointer;text-align:left}
+body.revise .card:not(.open) .d{display:none}
+body.revise .card:not(.open) .reveal{display:block}
+mark{background:var(--brass-soft);color:inherit;padding:0 2px;border-radius:2px}
+.empty{color:var(--muted);padding:24px 0}
+.xl-scroll{overflow-x:auto;border:1px solid var(--xl-grid);margin-top:10px;background:var(--paper)}
+table.xl{border-collapse:collapse;min-width:1500px;width:100%;table-layout:fixed;font-size:14px}
+.xl th,.xl td{border:1px solid var(--xl-grid);padding:12px 10px;text-align:center;vertical-align:middle;line-height:1.45}
+.xl thead th{background:var(--xl-head);color:var(--xl-head-ink);font:500 15px var(--body);text-transform:none;letter-spacing:0;padding:6px}
+.xl col.c-theme{width:190px}
+.xl td.theme{font-weight:500}
+.xl td .xt{display:block;margin-bottom:12px}
+.xl td .xd{display:block}
+.works{display:flex;gap:8px;flex-wrap:wrap}
+.work{font:400 22px var(--display);padding:6px 16px;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink);cursor:pointer}
+.work small{font:500 11px var(--mono);color:var(--muted);margin-left:6px}
+.work[aria-pressed="true"]{border-color:var(--ink);box-shadow:inset 0 -3px 0 var(--brass)}
+.ess-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:18px;margin-top:14px;align-items:start}
+.ess-col{display:grid;gap:10px;min-width:0}
+.ess-col h3.col-title{font:400 28px var(--display);text-transform:none;letter-spacing:0;color:var(--ink);margin:0;padding-bottom:6px;border-bottom:2px solid var(--ink)}
+.ess-col h3.col-title small{font:500 11px var(--mono);color:var(--muted);margin-left:8px;text-transform:uppercase;letter-spacing:.06em}
+.ess{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:12px 14px;display:grid;gap:6px;min-width:0}
+.ess .t{font-weight:700;margin:0}
+.ess .t .n{font:500 12px var(--mono);color:var(--brass);margin-right:6px}
+.ess .t .ch{font-weight:500;color:var(--accent)}
+.ess .d{margin:0}
+.tags{display:flex;flex-wrap:wrap;gap:4px}
+.tag{font:500 11px var(--mono);padding:2px 7px;border-radius:4px;background:var(--accent-soft);color:var(--accent)}
+.ess-table{border-collapse:collapse;min-width:1100px;width:100%;table-layout:fixed;font-size:14px}
+.ess-table col.c-notion{width:210px}
+.ess-table th,.ess-table td{border:1px solid var(--xl-grid);padding:12px;vertical-align:top;text-align:left;line-height:1.45}
+.ess-table thead th{background:var(--xl-head);color:var(--xl-head-ink);font:600 14px var(--body);text-transform:none;letter-spacing:0;text-align:center}
+.ess-table td.notion{background:var(--accent-soft)}
+.ess-table td.notion b{display:block;font:400 20px/1.15 var(--display);color:var(--accent);margin-bottom:8px}
+.ess-table td.notion span{color:var(--ink);font-size:13px}
+.ess-item{display:grid;gap:4px}
+.ess-item+.ess-item{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)}
+.ess-item .t{font-weight:700;margin:0}
+.ess-item .t .ch{font-weight:500;color:var(--accent)}
+.ess-item .d{margin:0}
+:root{--again:#b23a2b;--again-soft:#f6e1dd;--good:#2c7a4b;--good-soft:#ddefe3}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--again:#f08a7b;--again-soft:#3a1f1b;--good:#7fd19e;--good-soft:#1c3326}}
+:root[data-theme="dark"]{--again:#f08a7b;--again-soft:#3a1f1b;--good:#7fd19e;--good-soft:#1c3326}
+[hidden]{display:none!important}
+.rev-top{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;justify-content:space-between}
+.store{font:500 11px var(--mono);color:var(--muted);letter-spacing:.04em}
+.rev-decks{margin:10px 0 14px}
+.rev-decks .chip{display:inline-flex;gap:8px;align-items:center;font-size:13px;padding:7px 12px}
+.cnt{font:500 11px var(--mono);font-variant-numeric:tabular-nums}
+.cnt.n{color:var(--accent)}.cnt.l{color:var(--again)}.cnt.r{color:var(--good)}
+.chip[aria-pressed="true"] .cnt{color:var(--paper)}
+.rev-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:720px}
+.stat{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:10px 14px;display:grid;gap:2px}
+.stat b{font:400 30px/1 var(--display);font-variant-numeric:tabular-nums}
+.stat span{font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.s-new b{color:var(--accent)}.s-learn b{color:var(--again)}.s-due b{color:var(--good)}
+.mastery{display:flex;align-items:center;gap:10px;max-width:720px;margin-top:10px;font:12px var(--mono);color:var(--muted)}
+.mastery .bar{flex:1;height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+.mastery .bar i{display:block;height:100%;width:0;background:var(--good);transition:width .3s}
+.flash{max-width:720px;margin:22px auto 0;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:clamp(20px,4vw,36px);display:grid;gap:10px;min-height:250px;align-content:start;box-shadow:0 1px 0 var(--line),0 12px 30px -18px rgba(27,29,46,.25)}
+.flash .meta{font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.07em;color:var(--brass)}
+.flash .q{font:400 clamp(28px,4.5vw,40px)/1.1 var(--display);margin:0;text-wrap:balance}
+.flash .ref{font:500 13px var(--mono);color:var(--accent);margin:0}
+.flash .prompt{color:var(--muted);margin:6px 0 0;font-size:14px}
+.flash .ans{border-top:1px dashed var(--line);padding-top:14px;margin-top:4px;font-size:17px;line-height:1.6}
+.flash .ans .axe-tag{display:block;font:500 11px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:10px}
+.flash.done{text-align:center;justify-items:center;align-content:center}
+.flash.done .d{color:var(--muted);max-width:52ch;margin:0}
+.done-actions{margin-top:8px}
+.rev-actions{max-width:720px;margin:14px auto 0}
+.showbtn{width:100%;font:600 15px var(--body);padding:14px;border-radius:8px;border:1px solid var(--accent);background:var(--accent);color:var(--paper);cursor:pointer}
+.grades{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.grade{display:grid;gap:2px;justify-items:center;padding:10px 6px;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer;font:14px var(--body)}
+.grade small{font:500 12px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.grade.g1{border-color:var(--again)}.grade.g1 b{color:var(--again)}
+.grade.g2 b{color:var(--brass)}
+.grade.g3{border-color:var(--good)}.grade.g3 b{color:var(--good)}
+.grade.g4 b{color:var(--accent)}
+.grade:hover{background:var(--bg)}
+kbd{font:500 10px var(--mono);padding:1px 5px;border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;color:var(--muted);background:var(--paper)}
+.showbtn kbd{background:transparent;color:inherit;border-color:currentColor;margin-left:8px;opacity:.75}
+.rev-foot{max-width:720px;margin:18px auto 0;display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center;justify-content:space-between;font-size:13px;color:var(--muted)}
+.rev-foot select{font:13px var(--body);margin-left:6px;padding:3px 6px;border:1px solid var(--line);border-radius:4px;background:var(--paper);color:var(--ink)}
+.linkbtn{background:none;border:0;padding:0;font:13px var(--body);color:var(--accent);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.linkbtn:disabled{color:var(--muted);text-decoration:none;cursor:default;opacity:.6}
+.linkbtn.danger{color:var(--again)}
+.howto{max-width:720px;margin:18px auto 0;color:var(--muted);font-size:14px}
+.howto summary{cursor:pointer;color:var(--ink);font-weight:600}
+@media (max-width:520px){.grades{grid-template-columns:repeat(2,1fr)}.grade kbd,.showbtn kbd{display:none}.rev-stats{gap:6px}.stat{padding:8px 10px}.stat b{font-size:24px}}
+@media (prefers-reduced-motion:no-preference){.flash .ans:not([hidden]){animation:revIn .25s ease-out}@keyframes revIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}}
+footer{margin-top:40px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:14px}
+@media (prefers-reduced-motion:no-preference){.card{transition:border-color .15s}.card:hover{border-color:var(--accent)}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Français-Philo · Thème 2026-2027</div>
+    <h1>Arcanes de la création <em id="h1work">· Woolf</em></h1>
+    <p class="sub" id="subwork"></p>
+    <div class="works" role="group" aria-label="Choisir l'œuvre">
+      <button class="work" type="button" data-work="woolf" aria-pressed="true">Woolf<small>Un lieu à soi</small></button>
+      <button class="work" type="button" data-work="zola" aria-pressed="false">Zola<small>L'Œuvre</small></button>
+      <button class="work" type="button" data-work="platon" aria-pressed="false">Platon<small>Ion · République X</small></button>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab" role="tab" id="tab-presentation" aria-selected="false" data-view="presentation">Présentation</button>
+    <button class="tab" role="tab" id="tab-fiches" aria-selected="true" data-view="fiches">Fiches d'exemples</button>
+    <button class="tab" role="tab" id="tab-tableau" aria-selected="false" data-view="tableau">Tableau</button>
+    <button class="tab" role="tab" id="tab-essentiels" aria-selected="false" data-view="essentiels">Les incontournables</button>
+    <button class="tab" role="tab" id="tab-revision" aria-selected="false" data-view="revision">Révision Anki</button>
+  </nav>
+
+  <!-- PRÉSENTATION -->
+  <section id="presentation" hidden>
+   <div data-pres="woolf">
+    <h2>L'œuvre en bref</h2>
+    <div class="pres-grid">
+      <div class="box">
+        <h3>Genre</h3>
+        <p><span class="key">Essai</span> de Virginia Woolf, paru en 1929. Ce n'est pas un essai purement théorique : il est <b>semi-fictif, semi-autobiographique</b> et contient de la narration.</p>
+        <p>Il reprend deux <b>conférences</b> données en 1928 à Cambridge, dans deux collèges pour femmes : Newnham et Girton. Sujet imposé : « les femmes et la fiction ».</p>
+      </div>
+      <div class="box">
+        <h3>Thèse</h3>
+        <p class="quote">« une femme doit avoir de l'argent et un lieu à elle si elle veut écrire de la fiction »</p>
+        <p>Face à la domination patriarcale (pas d'autonomie, pas d'éducation, tâches domestiques), les femmes n'ont pas eu les conditions de la création. D'où une conclusion <b>pragmatique</b> : argent + lieu personnel.</p>
+      </div>
+      <div class="box">
+        <h3>Pourquoi « lieu » et pas « chambre » ?</h3>
+        <p>Titre anglais : <i>A Room of One's Own</i>, souvent traduit <i>Une chambre à soi</i>. Darrieussecq choisit <b>« lieu »</b> : sens plus large et plus symbolique. Le lieu à soi, c'est aussi un espace pour <b>penser par soi-même</b>.</p>
+      </div>
+      <div class="box">
+        <h3>Contexte : droits des femmes (Angleterre)</h3>
+        <ul>
+          <li><b>1870</b> : les femmes mariées disposent de leur héritage et de leurs revenus.</li>
+          <li><b>1882</b> : droit de propriété sur leurs biens.</li>
+          <li><b>1918</b> : droit de vote à partir de 30 ans.</li>
+          <li><b>1928</b> : droit de vote à 21 ans, comme les hommes.</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Contexte : la littérature féminine</h3>
+        <ul>
+          <li><b>XVIII<sup>e</sup></b> : plus d'éducation (correspondances), premières publications.</li>
+          <li><b>XIX<sup>e</sup></b> : surtout des romans, genre jeune et sans tradition académique masculine ; premiers revenus (journalisme).</li>
+          <li><b>XX<sup>e</sup></b> : poésie, sciences… La philosophie reste très masculine.</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Les deux voix du texte</h3>
+        <p><span class="mode conf">Mode conférence</span> Woolf parle en son nom à un public réel (intro et conclusion).</p>
+        <p><span class="mode recit">Mode récit</span> Woolf devient <b>Mary</b>, narratrice fictive, et raconte ses trois jours de réflexion. Mélange ambigu entre fiction et autobiographie.</p>
+        <p>Lieux inventés : <b>Oxbridge</b> (Oxford + Cambridge) et <b>Fernham</b> (Newnham + Girton).</p>
+      </div>
+    </div>
+
+    <h2 style="margin-top:30px">Structure de l'œuvre</h2>
+    <div class="timeline"><span>J-2 · Oxbridge</span><span>J-1 · British Museum</span><span>Soir J-1 · chez Mary</span><span>Matin J · chez Mary</span><span>Jour J · conférence</span></div>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Chapitre</th><th>Mode</th><th>Moment</th><th>Contenu</th></tr></thead>
+        <tbody>
+          <tr><td>I (intro)</td><td><span class="mode conf">Conférence</span></td><td>Jour J</td><td>Le sujet « les femmes et la fiction » ; Woolf annonce qu'elle va raconter sa réflexion sous le masque de Mary.</td></tr>
+          <tr><td>I (récit)</td><td><span class="mode recit">Récit</span></td><td>J-2</td><td>Parc d'Oxbridge, déjeuner chez les hommes, promenade, dîner à Fernham.</td></tr>
+          <tr><td>II</td><td><span class="mode recit">Récit</span></td><td>J-1</td><td>Recherches au British Museum, déjeuner, flânerie dans Londres.</td></tr>
+          <tr><td>III à V</td><td><span class="mode recit">Récit</span></td><td>Soir J-1</td><td>Chez Mary, réflexion à partir des livres de sa bibliothèque.</td></tr>
+          <tr><td>VI (récit)</td><td><span class="mode recit">Récit</span></td><td>Matin J</td><td>Mary arrive au bout de sa réflexion.</td></tr>
+          <tr><td>VI (conclusion)</td><td><span class="mode conf">Conférence</span></td><td>Jour J</td><td>Woolf reprend la parole en son nom et conclut.</td></tr>
+        </tbody>
+      </table>
+    </div>
+   </div>
+   <div data-pres="zola" hidden>
+    <h2>L'œuvre en bref</h2>
+    <div class="pres-grid">
+      <div class="box">
+        <h3>Genre et place dans le cycle</h3>
+        <p><span class="key">Roman</span> d'Émile Zola publié en 1886. C'est le <b>14<sup>e</sup> des 20 romans des Rougon-Macquart</b>, une fresque réaliste qui suit une famille pour peindre la société de la seconde moitié du XIX<sup>e</sup> siècle.</p>
+      </div>
+      <div class="box">
+        <h3>Le héros</h3>
+        <p><b>Claude Lantier</b>, fils de Gervaise (héroïne de <i>L'Assommoir</i>), peintre de génie qui ne vit que pour son art. Il peint jusqu'à l'épuisement toute sa vie <b>sans jamais produire le chef-d'œuvre</b> attendu.</p>
+        <p>Modèles : <b>Manet</b> (précurseur de la peinture moderne) et <b>Cézanne</b>, ami d'enfance de Zola, blessé de se reconnaître dans cet artiste raté.</p>
+      </div>
+      <div class="box">
+        <h3>Deux grands sujets</h3>
+        <ul>
+          <li><b>Le monde de l'art</b> à Paris (1862-1876) : une bande de jeunes artistes veut révolutionner l'art contre les règles académiques.</li>
+          <li><b>L'amour et l'amitié</b> : Christine, jalouse des toiles de Claude ; Pierre <b>Sandoz</b>, écrivain et double de Zola, seul à croire au génie de son ami.</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Les angoisses des artistes</h3>
+        <ul>
+          <li>Le désir de <b>réussite et de renommée</b> : inscrire son nom dans l'histoire de l'art.</li>
+          <li>Le sentiment d'<b>impuissance</b> : produire l'œuvre la plus vivante et la plus vraie sans jamais être satisfait.</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Contexte : l'art académique</h3>
+        <p>L'<b>Académie des Beaux-Arts</b> (1816) contrôle la carrière des artistes : formation à l'École des Beaux-Arts, canons anciens, sujets « nobles » (religion, mythologie), ordre et raison contre les passions.</p>
+        <p>Le <b>Salon</b> annuel refuse des milliers d'œuvres. En <b>1863</b>, Napoléon III autorise un <b>Salon des Refusés</b>, décrit dans le roman.</p>
+      </div>
+      <div class="box">
+        <h3>Les courants face à l'Académie</h3>
+        <ul>
+          <li><b>Réalisme</b> (années 1830, Courbet) : la vie quotidienne, le peuple, sans idéalisation.</li>
+          <li><b>Impressionnisme</b> (années 1860, Manet, Cézanne) : peinture en plein air, taches de couleur, la « vraie lumière ».</li>
+          <li><b>Naturalisme</b> (Zola) : décrire la vie réelle par la documentation et l'étude du « milieu », comme une expérience scientifique.</li>
+          <li><b>Romantisme</b> : passions, mystère, rêverie. Jugé dépassé par les personnages.</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Dans le roman</h3>
+        <p>Claude veut fonder l'école du <b>« plein air »</b> (l'impressionnisme). Sandoz veut écrire l'histoire d'une famille liée à son milieu : c'est le <b>calque du projet des Rougon-Macquart</b>. Le roman est donc une mise en abyme de la création.</p>
+      </div>
+    </div>
+
+    <h2 style="margin-top:30px">Structure de l'œuvre</h2>
+    <div class="timeline"><span>Paris · I-V</span><span>Bennecourt · VI</span><span>Retour à Paris · VII-X</span><span>Bennecourt puis Paris · XI</span><span>L'atelier · XII</span></div>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Chapitre</th><th>Lieu</th><th>Événement clé</th></tr></thead>
+        <tbody>
+          <tr><td>I</td><td>Paris, nuit d'orage</td><td>Claude recueille Christine et la dessine endormie.</td></tr>
+          <tr><td>II</td><td>Atelier de Claude</td><td>Le grand tableau <i>Plein air</i> ; Sandoz, Dubuche, le marchand Malgras ; Claude efface la toile de rage.</td></tr>
+          <tr><td>III</td><td>Paris</td><td>Crise de doute ; la bande (Mahoudeau, Jory, Fagerolles), le jeudi chez Sandoz, le maître Bongrand.</td></tr>
+          <tr><td>IV</td><td>Atelier</td><td>Visites de Christine ; elle finit par poser nue.</td></tr>
+          <tr><td>V</td><td>Salon des Refusés</td><td>La foule rit de <i>Plein air</i> ; Christine avoue son amour.</td></tr>
+          <tr><td>VI</td><td>Bennecourt</td><td>Bonheur à la campagne, naissance de Jacques ; Claude délaisse puis reprend la peinture.</td></tr>
+          <tr><td>VII</td><td>Paris</td><td>Retrouvailles ; Fagerolles a copié Claude ; doutes de Bongrand ; le marchand Naudet.</td></tr>
+          <tr><td>VIII</td><td>Paris</td><td>Trois toiles refusées ; révélation du pont des Saints-Pères ; la Baigneuse brisée ; mariage.</td></tr>
+          <tr><td>IX</td><td>Grand atelier</td><td>La toile monumentale ; Christine « mannequin » ; misère ; mort de Jacques, <i>l'Enfant mort</i>.</td></tr>
+          <tr><td>X</td><td>Salon officiel</td><td><i>L'Enfant mort</i> reçu « par charité » et ignoré ; triomphe de Fagerolles.</td></tr>
+          <tr><td>XI</td><td>Bennecourt, Paris</td><td>Dubuche déchu ; dernier jeudi, la bande se déchire ; Claude sur le pont.</td></tr>
+          <tr><td>XII</td><td>Atelier</td><td>Christine contre la femme peinte ; Claude se pend face à son œuvre.</td></tr>
+        </tbody>
+      </table>
+    </div>
+   </div>
+   <div data-pres="platon" hidden>
+    <h2>Les œuvres en bref</h2>
+    <div class="pres-grid">
+      <div class="box">
+        <h3>Ion (vers -390)</h3>
+        <p><span class="key">Dialogue</span> entre Socrate et Ion, un <b>rhapsode</b> : chanteur-acteur qui déclame les poèmes épiques d'Homère de cité en cité et prétend en expliquer le sens.</p>
+        <p>Platon distingue <b>être bon dans un art</b> (avoir un savoir) et <b>être un véritable artiste</b> (être inspiré). Ion, orgueilleux et attiré par la gloire, n'a aucun savoir : il est inspiré par les muses.</p>
+      </div>
+      <div class="box">
+        <h3>La République, livre X (595a-608b)</h3>
+        <p><span class="key">Dialogue</span> entre Socrate et <b>Glaucon</b> (frère de Platon), écrit entre -387 et -370. L'œuvre décrit la cité idéale.</p>
+        <p>Thèse : la poésie imitative doit être <b>bannie de la cité</b>, car elle détourne de la <b>vérité</b> (elle reproduit des apparences) et fait régner les <b>passions</b> sur la raison.</p>
+      </div>
+      <div class="box">
+        <h3>Deux regards sur la poésie</h3>
+        <p><i>Ion</i> est une œuvre de <b>jeunesse</b> : ironique mais encore bienveillante envers la poésie.</p>
+        <p><i>La République</i> est une œuvre de la <b>maturité</b> : elle condamne fermement la poésie.</p>
+      </div>
+      <div class="box">
+        <h3>Contexte : poésie épique et rhapsodie</h3>
+        <ul>
+          <li><b>Homère</b> (<i>Iliade</i>, <i>Odyssée</i>) : les épopées servent de leçons d'histoire, de morale et de vie civique.</li>
+          <li>Le <b>rhapsode</b> (dès le VI<sup>e</sup> s. av. J.-C.) déclame en costume lors des fêtes religieuses et se prétend expert du sens des poèmes.</li>
+          <li><b>Rhapsode ≠ poète</b> : le poète compose, le rhapsode récite. Mais comme peu de gens lisaient, Platon les met souvent sur le même plan.</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Point philo : Idées et apparences</h3>
+        <p>L'<b>essence</b> (ou <b>Idée</b>, « forme », « être » dans la traduction) est ce qui fait qu'une chose est ce qu'elle est.</p>
+        <ul>
+          <li><b>Monde intelligible</b> : les Idées, parfaites, accessibles par la raison.</li>
+          <li><b>Monde sensible</b> : les copies matérielles, accessibles par les sens, pleines d'illusions (allégorie de la caverne).</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Les trois niveaux (République X)</h3>
+        <ul>
+          <li><b>Niveau 1</b> : les Idées, la vérité, la science.</li>
+          <li><b>Niveau 2</b> : le monde matériel, les objets fabriqués.</li>
+          <li><b>Niveau 3</b> : les images, les œuvres d'art. Le niveau de l'ignorance.</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Attention au mot « art »</h3>
+        <p><b>Technè</b> = savoir appliqué à un domaine précis (médecine, menuiserie) : « art » proche de « science ».</p>
+        <p><b>Art d'imitation</b> = poésie, théâtre, peinture. Il ne demande aucun savoir et produit des « copies de copies ».</p>
+      </div>
+      <div class="box">
+        <h3>La mimésis</h3>
+        <p>L'<b>imitation</b> de la réalité par l'artiste. Pour Platon, c'est une menace : elle fait passer la copie pour l'original et excite les passions des citoyens.</p>
+        <p>Déjà dans <i>Ion</i>, c'est au <b>philosophe</b> de juger la valeur d'une poésie.</p>
+      </div>
+    </div>
+
+    <h2 style="margin-top:30px">Structure des œuvres</h2>
+    <div class="timeline"><span>Ion · 7 étapes</span><span>République X · 595a-608b</span></div>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Œuvre</th><th>Étape</th><th>Idée principale</th></tr></thead>
+        <tbody>
+          <tr><td>Ion</td><td>Introduction ironique</td><td>Ion revient vainqueur d'Épidaure ; Socrate feint d'admirer son art et ses beaux costumes.</td></tr>
+          <tr><td>Ion</td><td>Maîtriser un art, c'est juger</td><td>Qui connaît un art sait distinguer les bons et les mauvais. Ion ne s'intéresse qu'à Homère.</td></tr>
+          <tr><td>Ion</td><td>Inspiration sans savoir</td><td>Les poèmes naissent d'une inspiration divine, pas d'un art ; exemple de Tynnichos.</td></tr>
+          <tr><td>Ion</td><td>La chaîne et les anneaux</td><td>Dieux, poète, rhapsode, spectateur : la puissance divine passe d'anneau en anneau.</td></tr>
+          <tr><td>Ion</td><td>Le rhapsode ne maîtrise aucun art</td><td>Le cocher, le médecin, le capitaine jugent mieux qu'Ion ce dont parle Homère.</td></tr>
+          <tr><td>Ion</td><td>Chaque art a son domaine</td><td>Ion se prétend le meilleur stratège de Grèce, mais aucune cité ne l'emploie.</td></tr>
+          <tr><td>Ion</td><td>Imposteur ou homme divin ?</td><td>Ion préfère être « divin », et renonce ainsi à son prétendu savoir.</td></tr>
+          <tr><td>Rép. X</td><td>595a-598d</td><td>L'artiste est un dangereux imitateur : les trois lits.</td></tr>
+          <tr><td>Rép. X</td><td>598e-601c</td><td>L'histoire montre que les poètes sont ignorants : aucun n'a servi une cité.</td></tr>
+          <tr><td>Rép. X</td><td>601c-602c</td><td>La raison le démontre : utilisateur, fabricant, imitateur.</td></tr>
+          <tr><td>Rép. X</td><td>602c-605c</td><td>L'imitation flatte la partie inférieure de l'âme et nuit aux citoyens.</td></tr>
+          <tr><td>Rép. X</td><td>605c-608b</td><td>Résister au plaisir de l'art ; seuls les hymnes et les éloges sont admis.</td></tr>
+        </tbody>
+      </table>
+    </div>
+   </div>
+  </section>
+
+  <!-- FICHES -->
+  <section id="fiches">
+    <h2>Fiches d'exemples</h2>
+    <div class="tools">
+      <input id="q" type="search" placeholder="Rechercher un exemple (ex. Shakespeare, argent, colère)…" aria-label="Rechercher un exemple">
+      <button class="toggle" id="revise" aria-pressed="false">Mode révision</button>
+    </div>
+    <div class="tools">
+      <div class="chips" id="chapChips" aria-label="Filtrer par chapitre"></div>
+      <span class="count" id="count"></span>
+    </div>
+    <div id="axes"></div>
+    <p class="empty" id="empty" hidden>Aucun exemple ne correspond. Essaie un autre mot ou retire le filtre de chapitre.</p>
+  </section>
+
+  <!-- TABLEAU -->
+  <section id="tableau" hidden>
+    <h2>Tableau des exemples principaux</h2>
+    <div class="tools">
+      <p class="sub" style="flex:1 1 300px">6 axes, 6 exemples chacun : les exemples les plus solides de l'œuvre, réutilisables dans n'importe quel sujet sur la création.</p>
+      <button class="toggle" id="copyTable" type="button">Copier pour Excel</button>
+      <span class="count" id="copyMsg" role="status"></span>
+    </div>
+    <div class="xl-scroll"><table class="xl" id="xl"></table></div>
+  </section>
+
+  <!-- RÉVISION -->
+  <section id="revision" hidden>
+    <div class="rev-top">
+      <h2>Révision</h2>
+      <span class="store" id="revStore">Progression enregistrée dans ce navigateur</span>
+    </div>
+    <div class="chips rev-decks" id="revDecks" aria-label="Choisir un paquet"></div>
+    <div class="rev-stats">
+      <div class="stat s-new"><b id="cNew">0</b><span>Nouvelles</span></div>
+      <div class="stat s-learn"><b id="cLearn">0</b><span>En apprentissage</span></div>
+      <div class="stat s-due"><b id="cDue">0</b><span>À revoir</span></div>
+    </div>
+    <div class="mastery"><div class="bar"><i id="mBar"></i></div><span id="mTxt"></span></div>
+
+    <div class="flash" id="flash" aria-live="polite">
+      <div class="meta" id="fMeta"></div>
+      <p class="q" id="fTitle"></p>
+      <p class="ref" id="fRef"></p>
+      <p class="prompt" id="fPrompt">Que montre cet exemple sur la création ? Formule l'idée dans ta tête, puis retourne la carte.</p>
+      <div class="ans" id="fAns" hidden></div>
+    </div>
+    <div class="flash done" id="fDone" hidden>
+      <p class="q">Séance terminée</p>
+      <p class="d" id="doneTxt"></p>
+      <div class="done-actions">
+        <button class="toggle" type="button" id="moreNew">Étudier 10 nouvelles cartes de plus</button>
+      </div>
+    </div>
+    <div class="rev-actions">
+      <button class="showbtn" type="button" id="showAns">Afficher la réponse <kbd>Espace</kbd></button>
+      <div class="grades" id="grades" hidden>
+        <button type="button" class="grade g1" data-g="1"><b>À revoir</b><small id="i1"></small><kbd>1</kbd></button>
+        <button type="button" class="grade g2" data-g="2"><b>Difficile</b><small id="i2"></small><kbd>2</kbd></button>
+        <button type="button" class="grade g3" data-g="3"><b>Bien</b><small id="i3"></small><kbd>3</kbd></button>
+        <button type="button" class="grade g4" data-g="4"><b>Facile</b><small id="i4"></small><kbd>4</kbd></button>
+      </div>
+    </div>
+
+    <div class="rev-foot">
+      <button type="button" class="linkbtn" id="undo" disabled>Annuler la dernière réponse</button>
+      <label for="newLimit">Nouvelles cartes par jour
+        <select id="newLimit"><option>5</option><option>10</option><option selected>15</option><option>20</option><option>30</option><option>50</option></select>
+      </label>
+      <span class="reset"><button type="button" class="linkbtn" id="resetBtn">Réinitialiser la progression</button><span id="resetConfirm" hidden> Tout effacer ? <button type="button" class="linkbtn danger" id="resetYes">Oui, effacer</button> <button type="button" class="linkbtn" id="resetNo">Annuler</button></span></span>
+    </div>
+    <details class="howto">
+      <summary>Comment ça marche</summary>
+      <p>Chaque exemple des fiches devient une carte (127 en tout). Lis le titre, retrouve dans ta tête ce qu'il montre, puis retourne la carte et note-toi honnêtement. <b>À revoir</b> : la carte revient dans une minute. <b>Difficile</b>, <b>Bien</b>, <b>Facile</b> : elle revient de plus en plus tard (1 jour, puis plusieurs jours, puis plusieurs semaines). L'intervalle s'affiche sous chaque bouton. Une carte est « maîtrisée » quand elle revient dans 21 jours ou plus.</p>
+    </details>
+  </section>
+
+  <!-- INCONTOURNABLES -->
+  <section id="essentiels" hidden>
+    <h2>Les incontournables</h2>
+    <div class="tools">
+      <p class="sub" style="flex:1 1 300px">12 exemples par œuvre, rangés par notion. Pour une sous-partie, lis la ligne de gauche à droite : l'idée directrice, puis un exemple par œuvre.</p>
+      <button class="toggle" id="copyEss" type="button">Copier pour Excel</button>
+      <span class="count" id="essMsg" role="status"></span>
+    </div>
+    <div class="xl-scroll"><table class="ess-table" id="essTable"></table></div>
+  </section>
+
+  <footer>Fiches rédigées à partir des résumés détaillés et des présentations générales des deux œuvres. Les numéros de chapitre renvoient à l'œuvre choisie.</footer>
+</div>
+
+<script>
+const AXES = [
+{titre:"La création a un prix : argent et lieu (Les conditions matérielles)",
+ idee:"Le premier secret de la création n'est pas le génie mais l'infrastructure.",
+ ex:[
+ {t:"La thèse fondatrice",ch:"I",d:"Dès l'introduction, Woolf ramène le mystère de la création à deux conditions concrètes : de l'argent et un lieu à soi. L'arcane de l'œuvre est d'abord matériel."},
+ {t:"Le déjeuner d'Oxbridge",ch:"I",d:"Mets raffinés, vin et cigares stimulent une conversation brillante tout l'après-midi. Le confort nourrit la pensée : chez les hommes, l'esprit créatif est servi par l'abondance."},
+ {t:"Le dîner de Fernham",ch:"I",d:"Repas simple et vite expédié, conversation éteinte. Pour Woolf, la raison ne s'anime qu'après un bon repas : la pauvreté appauvrit aussi l'esprit."},
+ {t:"L'or des rois et des marchands",ch:"I",d:"Woolf imagine des siècles d'argent versé pour bâtir l'université (maçons, peintres, laboratoires, bourses). Derrière chaque lieu de savoir se cache une accumulation de richesse invisible."},
+ {t:"La pauvreté des fondatrices",ch:"I",d:"Les fondatrices de Fernham n'ont pu réunir l'argent nécessaire : avant 1870 et 1882, l'argent des femmes mariées revenait au mari. Sans capital, aucun héritage créatif à transmettre."},
+ {t:"L'héritage de la tante",ch:"II",d:"Le legs reçu délivre la narratrice des emplois mal payés, de la peur et de l'amertume. Libérée du besoin, elle peut voir les choses telles qu'elles sont : l'argent rend la pensée impartiale."},
+ {t:"La rente de cinq cents livres",ch:"VI",d:"La conclusion chiffre la condition de l'art : une rente pour avoir le temps de flâner et une chambre où écrire. Très peu d'artistes sont nés ou ont vécu dans la pauvreté."}
+ ]},
+{titre:"La création empêchée (Les obstacles invisibles)",
+ idee:"Interdits, mariage forcé, autocensure : ce qui empêche une œuvre de naître reste souvent caché.",
+ ex:[
+ {t:"La pelouse interdite",ch:"I",d:"Un surveillant chasse la narratrice du gazon réservé aux hommes et elle perd le fil de sa pensée. Une règle absurde suffit à briser l'élan créateur au moment où il surgit."},
+ {t:"La bibliothèque fermée",ch:"I",d:"L'entrée est refusée aux femmes non accompagnées, alors que les manuscrits de Lamb y sont conservés. On écarte les femmes des sources mêmes de la création."},
+ {t:"La sœur de Shakespeare",ch:"III",d:"Même génie que son frère, mais ni école, ni livres, un mariage forcé, le mépris des hommes de théâtre, puis le suicide. Le talent sans conditions de vie favorables est condamné à mourir."},
+ {t:"Les procès de sorcières",ch:"III",d:"Derrière une femme condamnée pour sorcellerie se cache peut-être une poétesse réprimée. L'histoire a effacé les créatrices : il ne reste d'elles que leur condamnation."},
+ {t:"La chasteté apprise",ch:"III",d:"La femme artiste a appris à rester cachée et invisible. Elle subit une lutte intérieure, de l'angoisse, une déformation de la pensée : l'obstacle est aussi en elle."},
+ {t:"Dorothy Osborne",ch:"IV",d:"Malgré son talent pour les lettres, elle juge ridicule qu'une femme devienne écrivaine. L'autocensure tue l'œuvre avant même qu'elle commence."},
+ {t:"Les manuscrits cachés de Jane Austen",ch:"IV",d:"Austen dissimulait ses pages dès qu'un visiteur entrait dans la pièce commune. La création féminine se fait en secret, dans les interstices de la vie domestique."}
+ ]},
+{titre:"Le secret de l'esprit créateur (Sérénité, colère, androgynie)",
+ idee:"Une œuvre libre naît d'un esprit libre de rancœur, où les deux sexes s'unissent.",
+ ex:[
+ {t:"L'esprit de Shakespeare",ch:"III",d:"Son œuvre ne laisse voir aucun obstacle ni désir refoulé : tout a été exprimé sans entrave. Il sert de référence à l'état d'esprit idéal du créateur."},
+ {t:"Lady Winchilsea",ch:"IV",d:"Interdite de se promener seule et de rêver dans les champs, elle écrit avec colère et mélancolie. Le ressentiment l'empêche d'atteindre un talent raffiné."},
+ {t:"Margaret Cavendish",ch:"IV",d:"Consumée par la rage face à la condition des femmes, sans personne pour guider son « intelligence sauvage », elle sombre dans la folie. Un génie sans cadre se gaspille."},
+ {t:"Austen contre Brontë",ch:"IV",d:"Austen écrit sans amertume ; l'indignation de Charlotte Brontë déborde dans Jane Eyre et brise l'histoire. La colère déforme l'œuvre et nuit à son intégrité."},
+ {t:"Le croquis du professeur von X",ch:"II",d:"La narratrice découvre qu'elle a dessiné sans y penser la tête furieuse de ce professeur. Le geste créatif inconscient révèle une colère qu'elle ne s'avouait pas."},
+ {t:"Le couple dans le taxi",ch:"VI",d:"Un homme et une femme montent dans le même taxi : cette scène banale apaise la narratrice. Une image du quotidien déclenche toute une théorie de la création."},
+ {t:"L'esprit androgyne",ch:"VI",d:"Chaque esprit possède une part masculine et une part féminine ; quand elles s'accordent, l'esprit est uni et créatif. Une pure masculinité ou une pure féminité est stérile pour l'écriture."},
+ {t:"Le « je » envahissant de Mr A",ch:"VI",d:"Le roman de Mr A est écrit avec liberté, mais sa virilité exagérée étouffe certains sentiments. Trop conscient de son sexe, l'auteur perd son pouvoir de suggestion."}
+ ]},
+{titre:"La création comme héritage (La transmission)",
+ idee:"Un chef-d'œuvre n'est jamais l'œuvre d'un seul : il s'appuie sur ceux qui précèdent.",
+ ex:[
+ {t:"Aphra Behn",ch:"IV",d:"L'une des premières femmes de la classe moyenne à vivre de sa plume. Écrire devient un métier rentable et non plus un caprice : elle sert de modèle et de caution aux suivantes."},
+ {t:"Le chef-d'œuvre collectif",ch:"IV",d:"Ceux qui nous précèdent servent de modèles et nous enrichissent de leur expérience. Une grande œuvre est le résultat d'une longue construction commune."},
+ {t:"L'absence de tradition féminine",ch:"IV",d:"Toutes les formes littéraires ont été façonnées par des hommes, et leur phrase ne convient pas aux femmes. Seule Jane Austen parvient à forger une écriture personnelle sans modèle."},
+ {t:"Le roman, genre ouvert",ch:"IV",d:"Plus jeune et plus souple, sans tradition académique, le roman est le seul genre que les femmes peuvent s'approprier. La forme créée dépend de l'héritage disponible."},
+ {t:"Les autrices du XX<sup>e</sup> siècle",ch:"V",d:"Les femmes écrivent désormais du théâtre, de la philosophie, et pour la beauté de l'art. Elles possèdent enfin un héritage sur lequel s'appuyer."},
+ {t:"Mary Carmichael dans cent ans",ch:"V",d:"Avec un lieu, une rente et une totale liberté, cette romancière débutante pourrait devenir poète. La création mûrit sur plusieurs générations."},
+ {t:"La sœur de Shakespeare ressuscitée",ch:"VI",d:"Grâce aux universités, au droit de propriété et au vote, les femmes du présent peuvent faire revivre la poétesse qui n'a jamais écrit un mot. Chaque génération crée pour les suivantes."}
+ ]},
+{titre:"Ce que la création révèle (Fiction et vérité)",
+ idee:"La fiction dit vrai autrement : elle ouvre des territoires que l'histoire a laissés dans l'ombre.",
+ ex:[
+ {t:"Le masque de Mary",ch:"I",d:"Woolf se cache derrière une narratrice fictive et prévient qu'elle mêlera vérité et invention. La fiction lui permet de quitter son identité pour parler au nom de toutes les femmes."},
+ {t:"L'idée au bord de la rivière",ch:"I",d:"Une pensée surgit, que Woolf ne précise jamais, et déclenche un torrent d'idées. L'origine de l'inspiration reste mystérieuse : elle naît dans la rêverie."},
+ {t:"Le paysage changeant",ch:"I",d:"Le même lieu est ravissant au soleil et morose au crépuscule. Aucune émotion n'est plus vraie qu'une autre : c'est le regard qui crée le sens."},
+ {t:"Le roman « intègre »",ch:"IV",d:"Un roman vaut quand il nous convainc que ce qu'il dit de la vie est vrai. La création doit révéler ce que l'on sent et désire, sans être déformée par la peur ou la colère."},
+ {t:"« Chloé aimait Olivia »",ch:"V",d:"Pour la première fois, un roman raconte une relation entre deux femmes, et non une femme vue par un homme. La création ouvre un territoire jamais exploré."},
+ {t:"Les vies obscures plutôt que Napoléon",ch:"V",d:"Woolf préfère qu'on écrive la vie quotidienne des femmes, jamais racontée, plutôt qu'une énième biographie de Napoléon. Créer, c'est rendre visible ce que l'histoire a ignoré."},
+ {t:"Des faits au sens caché",ch:"V",d:"Mary Carmichael note avec finesse des détails infimes, mais ne dit pas encore ce qu'ils signifient. Le secret de l'art est de faire voir ce qui se cache derrière les faits."}
+ ]},
+{titre:"Le créateur face au regard des autres (Critique et jugement)",
+ idee:"Créer suppose de résister au jugement d'autrui, ou de ne plus s'en soucier.",
+ ex:[
+ {t:"Le « gribouillis sauvage »",ch:"II",d:"À côté des notes rigoureuses d'un étudiant, la narratrice se moque de ses propres notes désordonnées. Elle défend l'humilité : la vérité est souvent déformée par nos opinions."},
+ {t:"Les livres des hommes sur les femmes",ch:"II",d:"Au British Museum, des milliers de textes masculins sur les femmes, souvent contradictoires, et aucun texte féminin sur les hommes. Les hommes ont seuls créé l'image de l'autre sexe."},
+ {t:"Le miroir grossissant",ch:"II",d:"Rabaisser les femmes permet aux hommes de se voir plus grands et d'avoir confiance en eux. C'est pourquoi la critique féminine les menace : elle réduit cette image de puissance."},
+ {t:"L'hostilité et l'indifférence",ch:"III",d:"Le monde se moque de ce que fait l'artiste ; pour une femme, s'y ajoutent les moqueries sur son intelligence. Résister épuise l'énergie qui devrait aller à l'œuvre."},
+ {t:"La hiérarchie des sujets",ch:"IV",d:"Un roman sur la guerre est jugé plus important qu'un roman sur les sentiments d'une femme. Les autrices, poussées à se justifier, déforment leur œuvre en attaquant les hommes ou en se dévalorisant."},
+ {t:"L'éloge suspect de son propre sexe",ch:"V",d:"Woolf s'arrête dès qu'elle vante les femmes : louer son sexe est toujours suspect. Le créateur doit se méfier du parti pris qui l'éloigne de la vérité."},
+ {t:"Le refus de classer les talents",ch:"VI",d:"Comparer le talent des hommes et des femmes serait un débat de cour d'école. Ce qui compte est d'écrire ce dont on a envie ; écrire pour plaire aux critiques serait le pire."}
+ ]}
+];
+
+const ROMAN = ["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII"];
+
+const ZOLA_AXES = [
+{titre:"Le tourment du créateur (L'impuissance)",
+ idee:"Chez Claude, créer est une lutte sans fin entre l'idée rêvée et ce que la main parvient à faire.",
+ ex:[
+ {t:"La gorge effacée",ch:"II",d:"Insatisfait du rendu, Claude veut crever sa toile, puis gratte au couteau la gorge et le visage de la femme. L'œuvre n'est jamais à la hauteur de l'idée qui la fait naître."},
+ {t:"Les « impuissances soudaines et inexpliquées »",ch:"II",d:"Claude a du talent, mais il se sent parfois incapable d'atteindre ce qu'il veut, sans savoir pourquoi. L'échec créatif reste un mystère que le génie ne maîtrise pas."},
+ {t:"L'humiliation devant les maçons",ch:"III",d:"Au restaurant ouvrier, Claude se sent humilié par des maçons qui, eux, réussissent leur besogne. Le travail de l'artiste n'a ni fin ni mesure claire de réussite."},
+ {t:"Le « mirage » de l'œuvre suivante",ch:"VIII",d:"Chaque toile achevée lui paraît incomplète, et il rêve déjà la suivante « superbe et héroïque ». Le désir de créer se nourrit d'une œuvre parfaite qui recule toujours."},
+ {t:"La toile monumentale",ch:"IX",d:"Après un élan magnifique, Claude se perd des années dans des retouches incessantes. L'acharnement sur une seule œuvre transforme la création en prison."},
+ {t:"Les couleurs « violâtres »",ch:"IX",d:"Devenu superstitieux, Claude exagère tant la lumière qu'il peint des corps violets. La recherche du vrai, poussée à l'excès, bascule dans la folie."},
+ {t:"La pendaison face à l'œuvre",ch:"XII",d:"Claude se pend dans l'atelier, face à sa grande toile inachevée. La création finit par dévorer le créateur."}
+ ]},
+{titre:"L'œuvre rivale de la vie (Création et désir)",
+ idee:"Claude met dans la peinture le désir qu'il refuse à la vie, au point que l'œuvre remplace la femme réelle.",
+ ex:[
+ {t:"Christine endormie",ch:"I",d:"En découvrant la jeune femme à demi nue, Claude passe du désir à l'enthousiasme d'artiste et se met à dessiner. La création naît d'un désir détourné vers l'œuvre."},
+ {t:"Peindre jusqu'à l'épuisement",ch:"II",d:"Épuisé, Claude refuse de s'arrêter, comme s'il assouvissait son désir des femmes en les recréant sur la toile. L'art devient le substitut d'une vie amoureuse."},
+ {t:"La pose nue de Christine",ch:"IV",d:"Sans un mot, Christine se déshabille pour que Claude puisse finir son tableau. L'œuvre exige un sacrifice de ceux qui entourent le créateur."},
+ {t:"Le bonheur de Bennecourt",ch:"VI",d:"Amoureux, Claude ne peint presque plus : il vit le rêve au lieu de le peindre. L'œuvre et la vie heureuse semblent ne pas pouvoir coexister."},
+ {t:"Le « mannequin vivant »",ch:"IX",d:"Christine pose pour reconquérir Claude, mais il ne voit plus en elle qu'un modèle. La femme peinte a remplacé la femme aimée."},
+ {t:"L'Enfant mort",ch:"IX",d:"En larmes, Claude peint le cadavre de son fils Jacques. L'artiste transforme même la douleur la plus intime en matière de création."},
+ {t:"La femme-déesse",ch:"XII",d:"À force de retouches, la femme du tableau est devenue une idole surhumaine, une allégorie du désir. En voulant créer la vie, Claude est sorti de la réalité."}
+ ]},
+{titre:"Créer contre les règles (Académie et modernité)",
+ idee:"La création moderne naît du refus des codes, au prix du rejet par les institutions.",
+ ex:[
+ {t:"Le refus des professeurs",ch:"II",d:"Claude a quitté les cours aux méthodes rigides : peindre, c'est peindre comme on le sent. La création authentique refuse d'imiter la vision des autres."},
+ {t:"La Bacchante devenue paysanne",ch:"III",d:"Claude veut voir dans la Bacchante de Mahoudeau une paysanne nue, plus vivante. Le créateur moderne remplace le mythe par la réalité."},
+ {t:"Les défauts du modèle",ch:"III",d:"Un maître des Beaux-Arts reproche à Fagerolles d'avoir peint les défauts de son modèle. L'Académie préfère l'idéal au vrai, que les jeunes peintres veulent montrer."},
+ {t:"Le Salon des Refusés",ch:"V",d:"Les « affreux réalistes » y sont relégués, mais Claude y sent naître un jour nouveau contre « l'antique routine ». La création neuve naît en marge des institutions."},
+ {t:"Les arbres bleus",ch:"VI",d:"Christine refuse d'admettre qu'un arbre puisse être bleu, même quand Claude lui montre ce reflet. La création nouvelle heurte les habitudes de l'œil."},
+ {t:"Les trois toiles refusées",ch:"VIII",d:"Trois années de suite, le jury refuse les tableaux de Claude peints en plein air. L'institution décide de ce qui a le droit d'exister comme art."},
+ {t:"La révolution sans gloire",ch:"X",d:"Tous les peintres imitent désormais Plein air, mais Claude a « semé sans récolter ». L'inventeur d'une forme n'est pas toujours celui qui en profite."}
+ ]},
+{titre:"L'œuvre face au public et au marché",
+ idee:"Une fois exposée, l'œuvre échappe au créateur : elle est jugée, vendue, copiée.",
+ ex:[
+ {t:"Les rires devant Plein air",ch:"V",d:"La foule s'esclaffe devant le tableau, scandalisée par l'homme habillé face à la femme nue. Le public juge l'œuvre sans la comprendre, par « imbécillité bourgeoise »."},
+ {t:"Le père Malgras",ch:"II",d:"Ce vieux marchand rusé flaire les talents et marchande âprement une esquisse. Dès l'atelier, l'œuvre devient une marchandise."},
+ {t:"Naudet le spéculateur",ch:"VII",d:"Sans goût pour l'art, Naudet fait monter artificiellement la valeur de peintres médiocres, avant la débâcle du marché. Le prix d'une œuvre ne dit rien de sa valeur."},
+ {t:"Jory, le critique vendu",ch:"VII",d:"Jory abandonne les articles engagés pour une presse mieux payée et fait la publicité de Fagerolles. La critique fabrique de faux « grands hommes »."},
+ {t:"Le plagiat de Fagerolles",ch:"X",d:"Fagerolles expose une copie de Plein air « adoucie, truquée, gâtée » et triomphe. Le public préfère une audace rendue confortable à la vraie nouveauté."},
+ {t:"Reçu « par charité »",ch:"X",d:"L'Enfant mort entre au Salon grâce à Fagerolles, accroché trop haut, et personne ne le regarde. L'indifférence est pire que la moquerie."},
+ {t:"Les tableaux de commerce",ch:"IX",d:"Dans la misère, Claude doit peindre des portraits et des saints sur commande, ce qui le dégoûte. La pauvreté force l'artiste à renier sa liberté."}
+ ]},
+{titre:"La gloire et ses illusions (Réussite et postérité)",
+ idee:"La gloire que les artistes poursuivent se révèle décevante ou mensongère.",
+ ex:[
+ {t:"Les rêves de la bande",ch:"III",d:"À vingt ans, les amis marchent dans Paris en rêvant de gloire et de révolution. L'ambition collective est le premier moteur de la création."},
+ {t:"Bongrand, éternel débutant",ch:"III",d:"Même reconnu comme maître, Bongrand a l'impression d'être un débutant à chaque nouvelle toile. La maîtrise ne supprime jamais la difficulté de créer."},
+ {t:"La confiance de Chambouvard",ch:"V",d:"Ce sculpteur ignorant ne doute jamais de lui, et Bongrand l'envie. Le doute est le prix du vrai talent."},
+ {t:"Bongrand au sommet",ch:"VII",d:"Pour Bongrand, le bonheur est dans l'ascension, et la renommée apporte la désillusion. Une fois atteinte, la gloire ne compense pas l'effort."},
+ {t:"Courajod reclus",ch:"IX",d:"Ce vieux maître vit caché, comme s'il fuyait sa gloire passée. La renommée est fragile et passagère."},
+ {t:"Le succès sans bonheur de Sandoz",ch:"IX",d:"Ses livres ont du succès, mais Sandoz accouche de chacun dans la douleur, jamais satisfait. La réussite extérieure n'apaise pas le tourment intérieur."},
+ {t:"La postérité illusoire",ch:"XI",d:"Sandoz pense que leur génie sera incompris et effacé par le temps. Le rêve d'immortalité de l'artiste est peut-être absurde."}
+ ]},
+{titre:"La création, aventure collective (Amitié et rivalités)",
+ idee:"La bande nourrit la création, puis l'échec et la jalousie la font éclater.",
+ ex:[
+ {t:"Les promenades de Plassans",ch:"II",d:"Enfants, Claude dessinait et Sandoz écrivait des vers dans la nature. La passion de l'art et de la nature les a protégés de « l'abrutissement »."},
+ {t:"Les jeudis de Sandoz",ch:"III",d:"Après une journée de crise, Claude ressort revigoré du dîner entre amis. La création se nourrit de l'échange et de l'élan collectif."},
+ {t:"Tous les arts ensemble",ch:"V",d:"Claude affirme que tous les arts doivent avancer ensemble pour faire naître la modernité. Une révolution artistique est l'œuvre d'une génération."},
+ {t:"Le projet de Sandoz",ch:"VI",d:"Sandoz veut raconter un « morceau d'histoire » à travers une famille : c'est le projet des Rougon-Macquart. Zola met en scène sa propre création dans le roman."},
+ {t:"La Baigneuse brisée",ch:"VIII",d:"La statue géante de Mahoudeau s'effondre sur le sol et il éclate en sanglots. L'œuvre est fragile, comme la vie misérable de ceux qui la créent."},
+ {t:"La bande brisée",ch:"XI",d:"Au dernier dîner, les amis s'accusent et désignent Claude comme le « grand peintre raté » qui les a entraînés. L'échec détruit la communauté qui portait la création."},
+ {t:"La fidélité de Sandoz",ch:"XI",d:"Même riche, Sandoz reste le même et continue de réunir ses amis. L'amitié sincère est le dernier soutien du créateur."}
+ ]}
+];
+
+const ZOLA_TABLEAU = [
+{theme:"Le tourment du créateur (L'impuissance)", ex:[
+ ["La gorge effacée (Chap. II)","Insatisfait, Claude gratte au couteau la femme qu'il vient de peindre. L'œuvre n'est jamais à la hauteur de l'idée qui la fait naître."],
+ ["Les impuissances inexpliquées (Chap. II)","Malgré son talent, Claude se sent parfois incapable de peindre ce qu'il veut. L'échec créatif reste un mystère que le génie ne maîtrise pas."],
+ ["Le « mirage » de l'œuvre suivante (Chap. VIII)","Chaque toile lui paraît incomplète et il rêve déjà la suivante. Le désir de créer se nourrit d'une perfection qui recule toujours."],
+ ["La toile monumentale (Chap. IX)","Après un bel élan, Claude se perd des années dans les retouches. L'acharnement sur une seule œuvre transforme la création en prison."],
+ ["Les couleurs « violâtres » (Chap. IX)","Obsédé par la lumière, Claude peint des corps violets. La recherche du vrai, poussée à l'excès, bascule dans la folie."],
+ ["La pendaison face à l'œuvre (Chap. XII)","Claude se pend devant sa toile inachevée. La création finit par dévorer le créateur."]]},
+{theme:"L'œuvre rivale de la vie (Création et désir)", ex:[
+ ["Christine endormie (Chap. I)","Devant la jeune femme, le désir de Claude devient enthousiasme d'artiste. La création naît d'un désir détourné vers l'œuvre."],
+ ["La pose nue de Christine (Chap. IV)","Christine se déshabille en silence pour que Claude finisse son tableau. L'œuvre exige un sacrifice de ceux qui entourent le créateur."],
+ ["Le bonheur de Bennecourt (Chap. VI)","Amoureux, Claude ne peint presque plus. L'œuvre et la vie heureuse semblent ne pas pouvoir coexister."],
+ ["Le « mannequin vivant » (Chap. IX)","Claude ne voit plus en Christine qu'un modèle. La femme peinte a remplacé la femme aimée."],
+ ["L'Enfant mort (Chap. IX)","En larmes, Claude peint son fils mort. L'artiste fait de la douleur la plus intime une matière de création."],
+ ["La femme-déesse (Chap. XII)","La figure peinte est devenue une idole irréelle, une allégorie du désir. En voulant créer la vie, Claude a quitté la réalité."]]},
+{theme:"Créer contre les règles (Académie et modernité)", ex:[
+ ["Le refus des professeurs (Chap. II)","Claude refuse les méthodes rigides : peindre, c'est peindre comme on le sent. La création authentique refuse d'imiter la vision des autres."],
+ ["La Bacchante devenue paysanne (Chap. III)","Claude préfère voir une paysanne nue dans la figure mythologique. Le créateur moderne remplace le mythe par la réalité."],
+ ["Le Salon des Refusés (Chap. V)","Les « affreux réalistes » y sont relégués, mais un art nouveau y naît. La création neuve apparaît en marge des institutions."],
+ ["Les arbres bleus (Chap. VI)","Christine refuse qu'un arbre puisse être bleu. La création nouvelle heurte les habitudes de l'œil."],
+ ["Les trois toiles refusées (Chap. VIII)","Le jury refuse chaque année les tableaux de Claude. L'institution décide de ce qui a le droit d'exister comme art."],
+ ["La révolution sans gloire (Chap. X)","Tous imitent Plein air, mais Claude a semé sans récolter. L'inventeur d'une forme n'est pas toujours celui qui en profite."]]},
+{theme:"L'œuvre face au public et au marché", ex:[
+ ["Les rires devant Plein air (Chap. V)","La foule s'esclaffe devant le tableau sans le comprendre. Le public juge l'œuvre selon ses habitudes, non selon sa valeur."],
+ ["Le père Malgras (Chap. II)","Le marchand négocie âprement une esquisse de Claude. Dès l'atelier, l'œuvre devient une marchandise."],
+ ["Naudet le spéculateur (Chap. VII)","Naudet gonfle la valeur de peintres médiocres avant la débâcle du marché. Le prix d'une œuvre ne dit rien de sa valeur."],
+ ["Le plagiat de Fagerolles (Chap. X)","Une copie « adoucie, truquée » de Plein air triomphe au Salon. Le public préfère une audace rendue confortable à la vraie nouveauté."],
+ ["Reçu « par charité » (Chap. X)","L'Enfant mort, accroché trop haut, n'est regardé par personne. L'indifférence est pire que la moquerie."],
+ ["Les tableaux de commerce (Chap. IX)","Dans la misère, Claude peint des commandes qui le dégoûtent. La pauvreté force l'artiste à renier sa liberté."]]},
+{theme:"La gloire et ses illusions (Réussite et postérité)", ex:[
+ ["Les rêves de la bande (Chap. III)","À vingt ans, les amis rêvent de conquérir Paris. L'ambition collective est le premier moteur de la création."],
+ ["Bongrand, éternel débutant (Chap. III)","Même maître reconnu, Bongrand se sent débutant à chaque toile. La maîtrise ne supprime jamais la difficulté de créer."],
+ ["La confiance de Chambouvard (Chap. V)","Ce sculpteur ignorant ne doute jamais, et Bongrand l'envie. Le doute est le prix du vrai talent."],
+ ["Bongrand au sommet (Chap. VII)","Le bonheur était dans l'ascension, la renommée apporte la désillusion. La gloire atteinte ne compense pas l'effort."],
+ ["Le succès sans bonheur de Sandoz (Chap. IX)","Sandoz réussit mais écrit chaque livre dans la douleur. La réussite extérieure n'apaise pas le tourment intérieur."],
+ ["La postérité illusoire (Chap. XI)","Sandoz pense que leur génie sera effacé par le temps. Le rêve d'immortalité de l'artiste est peut-être absurde."]]},
+{theme:"La création, aventure collective (Amitié et rivalités)", ex:[
+ ["Les promenades de Plassans (Chap. II)","Enfants, Claude dessinait et Sandoz écrivait dans la nature. La vocation artistique naît d'une jeunesse partagée."],
+ ["Les jeudis de Sandoz (Chap. III)","Après une crise, Claude ressort revigoré du dîner entre amis. La création se nourrit de l'échange et de l'élan collectif."],
+ ["Tous les arts ensemble (Chap. V)","Pour Claude, tous les arts doivent avancer ensemble vers la modernité. Une révolution artistique est l'œuvre d'une génération."],
+ ["Le projet de Sandoz (Chap. VI)","Sandoz veut raconter l'histoire d'une famille : c'est le projet des Rougon-Macquart. Zola met en scène sa propre création."],
+ ["La Baigneuse brisée (Chap. VIII)","La statue de Mahoudeau s'effondre et il éclate en sanglots. L'œuvre est aussi fragile que la vie de ceux qui la créent."],
+ ["La bande brisée (Chap. XI)","Au dernier dîner, les amis s'accusent mutuellement et accablent Claude. L'échec détruit la communauté qui portait la création."]]}
+];
+
+const WORKS = {
+  woolf:{label:"Woolf", sub:"<i>Un lieu à soi</i> (1929, trad. Marie Darrieussecq). Une présentation de l'œuvre, puis des fiches d'exemples classés par axe, prêts à mobiliser en dissertation."},
+  zola:{label:"Zola", sub:"<i>L'Œuvre</i> (1886), 14<sup>e</sup> roman des Rougon-Macquart. Une présentation de l'œuvre, puis des fiches d'exemples classés par axe, prêts à mobiliser en dissertation."}
+};
+let work = "woolf", currentView = "fiches";
+
+const TABLEAU = [
+{theme:"Les conditions de la création (L'argent et le lieu)", ex:[
+ ["Le déjeuner d'Oxbridge (Chap. I)","Le repas luxueux des hommes fait naître une conversation brillante. Le confort matériel nourrit directement la pensée et l'élan créateur."],
+ ["Le dîner de Fernham (Chap. I)","Chez les femmes, le repas est pauvre et la conversation s'éteint. La pauvreté ne prive pas seulement le corps, elle appauvrit l'esprit."],
+ ["L'or des rois et des marchands (Chap. I)","Des siècles d'argent ont bâti l'université d'Oxbridge. Derrière chaque lieu de savoir et de création se cache une richesse accumulée et invisible."],
+ ["L'héritage de la tante (Chap. II)","Le legs libère la narratrice de la peur et de l'amertume. Délivré du besoin, l'esprit peut enfin voir les choses telles qu'elles sont."],
+ ["La pièce commune (Chap. IV)","Interrompues sans cesse dans le salon familial, les femmes écrivent des romans plutôt que des poèmes. Le lieu de l'écriture détermine la forme même de l'œuvre."],
+ ["Les cinq cents livres et la chambre (Chap. VI)","Une rente et un lieu à soi sont les conditions de l'art. Très peu d'artistes sont nés pauvres : la liberté de créer dépend de la condition matérielle."]]},
+{theme:"La création empêchée (Les obstacles invisibles)", ex:[
+ ["La pelouse interdite (Chap. I)","Un surveillant chasse la narratrice et elle perd le fil de sa pensée. Une règle absurde suffit à briser l'élan créateur au moment où il naît."],
+ ["La bibliothèque fermée (Chap. I)","L'entrée est refusée aux femmes non accompagnées. On écarte les femmes des sources mêmes du savoir dont toute création se nourrit."],
+ ["La sœur de Shakespeare (Chap. III)","Même génie que son frère, mais ni école, ni liberté, un mariage forcé puis le suicide. Le talent seul ne suffit pas : sans conditions favorables, le génie meurt."],
+ ["Les procès de sorcières (Chap. III)","Derrière une sorcière condamnée se cache peut-être une poétesse réprimée. L'histoire a effacé les créatrices : seule leur condamnation subsiste."],
+ ["Dorothy Osborne (Chap. IV)","Malgré son talent, elle juge ridicule qu'une femme écrive. L'autocensure, héritée de la société, étouffe l'œuvre avant même qu'elle commence."],
+ ["Les manuscrits cachés d'Austen (Chap. IV)","Jane Austen dissimule ses pages dès qu'un visiteur entre. La création se fait en secret, dans les interstices d'une vie qui ne lui appartient pas."]]},
+{theme:"L'esprit créateur (Liberté intérieure et sérénité)", ex:[
+ ["L'esprit de Shakespeare (Chap. III)","Son œuvre ne laisse voir aucune rancœur ni désir refoulé. L'esprit idéal du créateur est celui qui s'exprime entièrement, sans obstacle intérieur."],
+ ["Lady Winchilsea (Chap. IV)","Privée du droit de rêver seule dans les champs, elle écrit avec colère. Le ressentiment empêche le talent d'atteindre sa pleine maturité."],
+ ["Austen contre Brontë (Chap. IV)","Austen écrit sans amertume, l'indignation de Brontë déborde dans Jane Eyre. La colère personnelle déforme l'œuvre et brise son unité."],
+ ["Le croquis du professeur von X (Chap. II)","La narratrice dessine sans y penser un visage furieux. Le geste créatif inconscient révèle une colère qu'elle ne s'avouait pas."],
+ ["L'esprit androgyne (Chap. VI)","Quand les parts masculine et féminine de l'esprit s'accordent, l'esprit devient uni et fécond. La création naît de l'harmonie intérieure, non de la division."],
+ ["Le « je » de Mr A (Chap. VI)","Une virilité exagérée envahit son roman et étouffe certains sentiments. Trop conscient de lui-même, le créateur perd son pouvoir de suggestion."]]},
+{theme:"La création comme héritage (La transmission)", ex:[
+ ["Aphra Behn (Chap. IV)","Première femme de la classe moyenne à vivre de sa plume, elle ouvre la voie aux suivantes. Toute création a besoin de pionniers qui servent de modèles."],
+ ["Le chef-d'œuvre collectif (Chap. IV)","Une grande œuvre s'appuie sur l'expérience de ceux qui précèdent. Le génie n'est jamais isolé : il est le sommet d'une longue construction commune."],
+ ["L'absence de tradition (Chap. IV)","Les formes littéraires ont été façonnées par des hommes et ne conviennent pas aux femmes. Sans héritage adapté, le créateur doit inventer seul sa propre forme."],
+ ["Le roman, genre ouvert (Chap. IV)","Jeune et souple, sans tradition académique, le roman est le seul genre que les femmes peuvent s'approprier. La forme créée dépend de ce que l'histoire rend disponible."],
+ ["Mary Carmichael dans cent ans (Chap. V)","Avec un lieu, une rente et la liberté, la romancière débutante pourrait devenir poète. La création mûrit lentement, sur plusieurs générations."],
+ ["La sœur de Shakespeare ressuscitée (Chap. VI)","Les femmes du présent peuvent faire renaître la poétesse qui n'a jamais écrit. Chaque génération crée pour celles et ceux qui viendront après."]]},
+{theme:"Ce que la création révèle (Fiction et vérité)", ex:[
+ ["Le masque de Mary (Chap. I)","Woolf se cache derrière une narratrice fictive et mêle vérité et invention. La fiction permet de quitter son identité pour parler au nom de tous."],
+ ["L'idée au bord de la rivière (Chap. I)","Une pensée surgit, jamais précisée, et déclenche un torrent d'idées. L'origine de l'inspiration reste un mystère qui naît dans la rêverie."],
+ ["Le paysage changeant (Chap. I)","Le même lieu est ravissant au soleil et morose au crépuscule. C'est le regard de l'observateur qui crée le sens de ce qu'il voit."],
+ ["Le roman « intègre » (Chap. IV)","Un roman vaut quand il nous convainc que ce qu'il dit de la vie est vrai. La création a pour rôle de révéler ce que l'on sent et ce que l'on désire."],
+ ["« Chloé aimait Olivia » (Chap. V)","Pour la première fois, un roman montre une relation entre deux femmes. La création ouvre des territoires que personne n'avait encore explorés."],
+ ["Des faits au sens caché (Chap. V)","Mary Carmichael accumule des détails fins sans en dire le sens. Le secret de l'art est de faire voir ce qui se cache derrière les faits."]]},
+{theme:"Le créateur face aux autres (Critique et jugement)", ex:[
+ ["Les livres des hommes sur les femmes (Chap. II)","Des milliers de textes masculins sur les femmes, aucun texte féminin sur les hommes. Celui qui détient la plume fabrique l'image de l'autre."],
+ ["Le miroir grossissant (Chap. II)","Rabaisser les femmes permet aux hommes de se voir plus grands. La confiance du créateur repose parfois sur le mépris d'autrui."],
+ ["L'hostilité et l'indifférence (Chap. III)","Le monde se moque de ce que fait l'artiste, et la femme subit en plus des moqueries. Résister au jugement épuise l'énergie qui devrait aller à l'œuvre."],
+ ["La hiérarchie des sujets (Chap. IV)","Un livre sur la guerre est jugé plus important qu'un livre sur les sentiments. Les valeurs dominantes décident de ce qui mérite d'être créé."],
+ ["Le refus de classer les talents (Chap. VI)","Comparer les talents serait un débat de cour d'école. Ce qui compte est d'écrire ce que l'on veut, et non pour plaire aux critiques."],
+ ["Être soi-même (Chap. VI)","Woolf n'invite pas son public à changer le monde mais à penser les choses telles qu'elles sont. Créer, c'est d'abord oser être soi."]]}
+];
+
+function renderTableau(){
+  const cols = '<colgroup><col class="c-theme">' + '<col>'.repeat(6) + '</colgroup>';
+  const head = '<thead><tr><th>Thème</th><th colspan="6">'+WORKS[work].label+'</th></tr></thead>';
+  const body = WORKS[work].tableau.map(r=>'<tr><td class="theme">'+esc(r.theme)+'</td>'+r.ex.map(([t,d])=>'<td><span class="xt">'+esc(t)+' :</span><span class="xd">'+esc(d)+'</span></td>').join('')+'</tr>').join('');
+  document.getElementById('xl').innerHTML = cols+head+'<tbody>'+body+'</tbody>';
+}
+function tableauTSV(){
+  const q = s => '"'+s.replace(/"/g,'""')+'"';
+  return ['Thème\t'+WORKS[work].label].concat(WORKS[work].tableau.map(r=>[q(r.theme)].concat(r.ex.map(([t,d])=>q(t+' :\n\n'+d))).join('\t'))).join('\n');
+}
+let chap = null;
+const $ = s => document.querySelector(s);
+
+function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function hi(html,q){
+  if(!q) return html;
+  const re = new RegExp("("+q.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")","gi");
+  return html.split(/(<[^>]+>)/).map(p=>p.startsWith("<")?p:p.replace(re,"<mark>$1</mark>")).join("");
+}
+function norm(s){return s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase()}
+
+function render(){
+  const q = $("#q").value.trim();
+  const nq = norm(q);
+  let total = 0;
+  $("#axes").innerHTML = WORKS[work].axes.map((a,i)=>{
+    const items = a.ex.filter(e=>(!chap||e.ch===chap) && (!nq || norm(e.t+" "+e.d).includes(nq)));
+    total += items.length;
+    if(!items.length) return "";
+    return `<div class="axe"><div class="axe-head"><span class="axe-num">${ROMAN[i]}.</span><h3 class="axe-title">${esc(a.titre)}</h3><p class="axe-idea">${esc(a.idee)}</p></div>
+      <div class="cards">${items.map(e=>`<article class="card"><p class="t">${hi(e.t,q)} <span class="ch">(${e.ref||"Chap. "+e.ch})</span> :</p><button class="reveal" type="button">Afficher l'explication</button><p class="d">${hi(e.d,q)}</p></article>`).join("")}</div></div>`;
+  }).join("");
+  $("#empty").hidden = total>0;
+  $("#count").textContent = total + " exemple" + (total>1?"s":"");
+}
+
+WORKS.woolf.axes = AXES; WORKS.woolf.tableau = TABLEAU; WORKS.woolf.nch = 6;
+WORKS.zola.axes = ZOLA_AXES; WORKS.zola.tableau = ZOLA_TABLEAU; WORKS.zola.nch = 12;
+const I = (t,d)=>({t,ch:"Ion",ref:"Ion",d});
+const R = (t,s,d)=>({t,ch:"Rep",ref:"Rép. X, "+s,d});
+WORKS.platon = {label:"Platon", chips:[["Ion","Ion"],["Rep","République X"]],
+ sub:"<i>Ion</i> et <i>La République</i>, livre X (595a-608b). Une présentation des œuvres, puis des fiches d'exemples classés par axe, prêts à mobiliser en dissertation.",
+ axes:[
+ {titre:"L'inspiration divine (L'origine mystérieuse de la création)",
+  idee:"Dans Ion, la création poétique ne vient ni du savoir ni de la technique, mais des dieux.",
+  ex:[
+  I("Des œuvres qui ne viennent pas d'un art","Socrate affirme que les beaux poèmes ne sont pas fabriqués par un savoir ou une méthode, mais naissent d'une inspiration. Le secret de la création échappe à la raison."),
+  I("Le poète possédé","Le poète compose dans une sorte de transe, comme possédé par les muses, incapable de se raisonner. Le créateur n'est pas maître de ce qu'il crée : il transmet une voix qui le dépasse."),
+  I("Tynnichos de Chalcis","Ce poète médiocre n'a écrit qu'un seul poème de valeur, peut-être le plus beau de tous. Le chef-d'œuvre ne dépend pas du talent : il est un don."),
+  I("Un genre par muse","Chaque poète n'excelle que dans le genre que telle muse lui inspire. Le don créateur est limité et ne se choisit pas."),
+  I("Ion possédé par Homère","Ion n'est brillant que sur Homère, et Socrate l'explique par une faveur divine particulière. L'inspiration est singulière et ne se généralise pas."),
+  I("Ion sur scène","En déclamant, Ion laisse sa raison céder à l'émotion et vit les scènes qu'il raconte. L'interprétation inspirée est un désaisissement de soi."),
+  I("Imposteur ou homme divin ?","Socrate laisse à Ion ce choix final, et Ion se dit « divin ». L'artiste inspiré crée de belles choses sans comprendre ce qu'il dit.")
+ ]},
+ {titre:"La chaîne de l'inspiration (Transmission et public)",
+  idee:"La force créatrice passe des dieux au public par une suite d'intermédiaires.",
+  ex:[
+  I("La chaîne des anneaux","Les dieux inspirent le poète (premier anneau), qui inspire le rhapsode (anneau du milieu), qui touche le spectateur (dernier anneau). La création est une énergie qui se transmet."),
+  I("Le rhapsode, anneau du milieu","Ion ne crée rien, mais il fait vivre l'œuvre d'Homère devant le public. L'interprète prolonge la création sans en être l'auteur."),
+  I("Le spectateur, dernier anneau","Grâce au rhapsode, le spectateur ressent à son tour la puissance divine. L'œuvre n'est achevée que lorsqu'elle touche quelqu'un."),
+  I("Le premier inspiré","Les hommes peuvent s'inspirer entre eux, mais il y a toujours au début un poète qui a reçu l'inspiration des dieux. Toute tradition remonte à une source mystérieuse."),
+  I("Le premier prix d'Épidaure","Ion revient vainqueur d'un concours et s'en vante. La création est aussi un spectacle public, pris dans la compétition et la gloire."),
+  R("Le plaisir dramatique","605c-608b","Même les hommes les plus raisonnables compatissent aux malheurs des héros et louent le poète qui les émeut. Le pouvoir de l'œuvre sur le public est presque irrésistible."),
+  R("La contagion du rire et des larmes","605c-608b","Rire des pitreries ou pleurer au théâtre nous pousse à relâcher nos émotions dans la vie. L'œuvre transforme durablement celui qui la reçoit.")
+ ]},
+ {titre:"Savoir ou créer ? (Technè contre inspiration)",
+  idee:"Platon oppose le savoir de l'expert à l'inspiration de l'artiste, qui parle de tout sans rien connaître.",
+  ex:[
+  I("Maîtriser un art, c'est juger","Celui qui connaît un art sait distinguer qui le pratique bien ou mal ; Ion, lui, ne s'intéresse qu'à Homère. Le créateur inspiré n'a pas de vision d'ensemble de son art."),
+  I("Le médecin et les aliments","Parmi plusieurs personnes qui parlent d'aliments, le médecin sait qui en parle bien. Le savoir se reconnaît à sa capacité de juger."),
+  I("Le cocher et le char","Quand Homère décrit une course de chars, seul un cocher peut dire s'il a raison. L'œuvre parle de tout, mais le poète ne sait rien de ce dont il parle."),
+  I("Le capitaine et son équipage","Ion croit savoir ce que chacun doit dire, mais il ne sait pas mieux qu'un capitaine ou un médecin. L'artiste imite les paroles sans posséder les compétences."),
+  I("Ion, meilleur stratège de Grèce","Ion se prétend stratège, mais aucune cité ne fait appel à lui. L'ironie de Socrate dénonce l'artiste qui confond prestige et compétence."),
+  R("Le poète qui serait médecin","598e-601c","Si les poètes savaient vraiment ce dont ils parlent, ils pratiqueraient ces arts au lieu de les chanter. Créer des images n'est pas savoir."),
+  R("Le cavalier, le forgeron et l'imitateur","601c-602c","Le cavalier sait si le mors est bon, le forgeron l'apprend de lui, l'imitateur ne sait rien. L'artiste est au plus bas niveau de la connaissance.")
+ ]},
+ {titre:"L'imitation, copie de copie (Mimésis et vérité)",
+  idee:"Dans le livre X, l'œuvre d'art est éloignée de trois degrés de la vérité.",
+  ex:[
+  R("Les trois lits","595a-598d","Le lit idéal vient d'un dieu, le menuisier en fabrique une copie, le peintre imite cette copie. L'œuvre d'art est un simulacre au troisième rang de la vérité."),
+  R("Le dieu, créateur naturel","595a-598d","Seul un dieu crée la « forme » des choses, l'artisan et l'artiste ne font que copier. La seule vraie création est divine."),
+  R("Le peintre, artisan universel","595a-598d","Socrate décrit avec ironie un artisan capable de tout fabriquer, les êtres, le ciel, les dieux : c'est le peintre. Sa toute-puissance n'est que celle des apparences."),
+  R("Un lit vu sous un angle","595a-598d","Le peintre ne copie même pas le lit, seulement son apparence sous un point de vue. L'œuvre ne saisit jamais la chose entière."),
+  R("Le trompe-l'œil","595a-598d","Une peinture peut faire prendre une image pour une chose réelle aux ignorants. La création est d'autant plus dangereuse qu'elle est réussie."),
+  R("Le poète tragique au troisième rang","595a-598d","L'auteur de tragédie imite la vie d'un roi, elle-même reflet d'une vérité supérieure. Toute imitation artistique s'éloigne de l'essence."),
+  R("Les couleurs des mots","598e-601c","Comme le peintre avec ses couleurs, le poète charme avec les mots et donne l'apparence de leçons profondes. La beauté de la forme masque l'absence de savoir.")
+ ]},
+ {titre:"L'art contre la raison (Danger moral et politique)",
+  idee:"L'œuvre imitative flatte la partie inférieure de l'âme et menace l'ordre de la cité.",
+  ex:[
+  R("Les sens contre la raison","602c-605c","Les sens nous trompent (illusions d'optique), la raison les corrige ; or l'art s'adresse aux sens. La création flatte ce qu'il y a de plus faible en nous."),
+  R("L'homme de valeur","602c-605c","L'homme raisonnable garde son chagrin pour l'intimité et reste calme en public. L'art préfère pourtant montrer ceux qui se lamentent."),
+  R("Le caractère « excitable et bariolé »","602c-605c","Le sage impassible est difficile à représenter, alors l'artiste choisit les passionnés. La création va vers ce qui est spectaculaire, pas vers ce qui est bon."),
+  R("Homère sans vertu","598e-601c","Aucun poète n'a jamais été utile à une cité ni n'a servi de modèle de vie. L'œuvre peut sembler profonde sans rien rendre meilleur."),
+  R("« Assécher » les passions","605c-608b","Il faudrait assécher les passions pour devenir meilleurs, mais la poésie les irrigue. L'art nourrit en nous ce que la raison devrait contenir."),
+  R("Les philosophes à la place des poètes","595a","Platon veut remplacer l'autorité des poètes, fondée sur l'émotion et le mythe, par celle des philosophes, fondée sur la raison. La création perd son rôle d'éducatrice."),
+  I("Le beau costume du rhapsode","Socrate souligne avec ironie que le rhapsode doit être richement habillé pour monter sur scène. L'art cherche l'effet plutôt que la connaissance.")
+ ]},
+ {titre:"Bannir ou encadrer la création (L'art dans la cité)",
+  idee:"Platon se demande quelle place la cité peut laisser aux créateurs.",
+  ex:[
+  R("Le bannissement de la poésie imitative","595a","Dès l'ouverture du livre X, Socrate exige de rejeter de la cité idéale la poésie d'imitation. La création est jugée selon son effet sur la communauté."),
+  R("Hymnes et éloges seuls admis","605c-608b","Seuls restent les hymnes aux dieux et les éloges des hommes vertueux. Une création sans ornement, soumise à la vérité et au bien."),
+  R("La porte entrouverte","605c-608b","Socrate accepterait de réviser son jugement si l'on montrait l'utilité de la poésie pour la vie et la cité. L'art doit prouver sa valeur pour être admis."),
+  R("Renoncer comme à un amour","605c-608b","Il faut se faire violence et renoncer à l'art imitatif comme à une passion amoureuse nuisible. Le charme de l'œuvre rend son rejet douloureux."),
+  I("Le philosophe, juge de la poésie","Même dans Ion, plus bienveillant, c'est le philosophe qui juge la valeur d'une poésie. Le créateur inspiré ne peut pas évaluer sa propre œuvre."),
+  I("Ion, vaniteux et intéressé","Ion semble plus attiré par la gloire et l'argent que par la poésie elle-même. Le prestige de l'artiste peut devenir une imposture."),
+  ({t:"De Ion à La République",ch:"Rep",ref:"Ion et Rép. X",d:"Platon passe d'une ironie bienveillante (Ion) à une condamnation radicale (République). Son regard sur la création se durcit avec sa réflexion politique."})
+ ]}
+ ],
+ tableau:[
+ {theme:"L'inspiration divine (L'origine de la création)", ex:[
+  ["Le poète possédé (Ion)","Le poète compose en transe, comme possédé par les muses. Le créateur n'est pas maître de ce qu'il crée."],
+  ["Des œuvres sans art (Ion)","Les beaux poèmes ne viennent ni d'un savoir ni d'une méthode, mais d'une inspiration. Le secret de la création échappe à la raison."],
+  ["Tynnichos de Chalcis (Ion)","Un poète médiocre écrit un jour le plus beau des poèmes. Le chef-d'œuvre est un don, pas le fruit du talent."],
+  ["Un genre par muse (Ion)","Chaque poète n'excelle que dans le genre que sa muse lui inspire. Le don créateur est limité et ne se choisit pas."],
+  ["Ion sur scène (Ion)","En déclamant, Ion vit les scènes au lieu de les raisonner. L'interprétation inspirée est un désaisissement de soi."],
+  ["Imposteur ou homme divin ? (Ion)","Ion choisit d'être « divin » plutôt que savant. L'artiste inspiré crée du beau sans comprendre ce qu'il dit."]]},
+ {theme:"La chaîne de l'inspiration (Transmission et public)", ex:[
+  ["La chaîne des anneaux (Ion)","Dieux, poète, rhapsode, spectateur : l'inspiration passe d'anneau en anneau. La création est une énergie qui se transmet."],
+  ["Le rhapsode, anneau du milieu (Ion)","Ion ne crée rien mais fait vivre l'œuvre d'Homère. L'interprète prolonge la création sans en être l'auteur."],
+  ["Le spectateur, dernier anneau (Ion)","Le public ressent à son tour la puissance divine. L'œuvre n'est achevée que lorsqu'elle touche quelqu'un."],
+  ["Le premier inspiré (Ion)","Les hommes s'inspirent entre eux, mais une source divine est toujours au début. Toute tradition remonte à une origine mystérieuse."],
+  ["Le plaisir dramatique (Rép. X, 605c-608b)","Même les sages compatissent aux malheurs des héros. Le pouvoir de l'œuvre sur le public est presque irrésistible."],
+  ["La contagion des émotions (Rép. X, 605c-608b)","Rire ou pleurer au théâtre relâche nos émotions dans la vie. L'œuvre transforme durablement celui qui la reçoit."]]},
+ {theme:"Savoir ou créer ? (Technè contre inspiration)", ex:[
+  ["Maîtriser un art, c'est juger (Ion)","L'expert sait qui pratique bien ou mal son art ; Ion ne connaît qu'Homère. Le créateur inspiré n'a pas de vue d'ensemble."],
+  ["Le cocher et le char (Ion)","Seul un cocher peut juger ce qu'Homère dit des chars. L'œuvre parle de tout, mais son auteur ne sait rien."],
+  ["Ion, meilleur stratège (Ion)","Ion se croit stratège, mais aucune cité ne l'emploie. L'artiste confond prestige et compétence."],
+  ["Le poète qui serait médecin (Rép. X, 598e-601c)","Si le poète savait la médecine, il serait médecin plutôt que poète. Créer des images n'est pas savoir."],
+  ["Le cavalier et le mors (Rép. X, 601c-602c)","L'utilisateur sait, le fabricant croit, l'imitateur ignore. L'artiste est au plus bas niveau de la connaissance."],
+  ["Le capitaine et son équipage (Ion)","Ion ne sait pas mieux qu'un capitaine ce qu'il faut dire aux marins. L'artiste imite les paroles sans posséder les compétences."]]},
+ {theme:"L'imitation, copie de copie (Mimésis et vérité)", ex:[
+  ["Les trois lits (Rép. X, 595a-598d)","Lit idéal du dieu, lit du menuisier, lit du peintre. L'œuvre d'art est un simulacre au troisième rang de la vérité."],
+  ["Le dieu, créateur naturel (Rép. X, 595a-598d)","Seul un dieu crée la forme des choses ; les hommes ne font que copier. La seule vraie création est divine."],
+  ["Le peintre, artisan universel (Rép. X, 595a-598d)","Le peintre semble tout fabriquer, jusqu'aux dieux. Sa toute-puissance n'est que celle des apparences."],
+  ["Le trompe-l'œil (Rép. X, 595a-598d)","Une peinture peut faire prendre une image pour la réalité. Plus l'œuvre est réussie, plus elle trompe."],
+  ["Le poète tragique (Rép. X, 595a-598d)","La tragédie imite la vie d'un roi, reflet d'une vérité supérieure. Toute imitation s'éloigne de l'essence."],
+  ["Les couleurs des mots (Rép. X, 598e-601c)","Le poète charme avec les mots comme le peintre avec les couleurs. La beauté de la forme masque l'absence de savoir."]]},
+ {theme:"L'art contre la raison (Danger moral et politique)", ex:[
+  ["Les sens contre la raison (Rép. X, 602c-605c)","L'art s'adresse aux sens, que la raison doit corriger. La création flatte ce qu'il y a de plus faible en nous."],
+  ["L'homme de valeur (Rép. X, 602c-605c)","Le sage cache son chagrin en public. L'art préfère pourtant montrer ceux qui se lamentent."],
+  ["Le caractère « excitable » (Rép. X, 602c-605c)","L'artiste représente les passionnés, plus faciles à imiter que le sage. La création va vers le spectaculaire, non vers le bien."],
+  ["Homère sans vertu (Rép. X, 598e-601c)","Aucun poète n'a servi une cité ni n'a été un modèle de vie. L'œuvre peut paraître profonde sans rendre meilleur."],
+  ["« Assécher » les passions (Rép. X, 605c-608b)","La poésie irrigue les passions qu'il faudrait assécher. L'art nourrit ce que la raison devrait contenir."],
+  ["Le beau costume du rhapsode (Ion)","Le rhapsode soigne surtout son apparence sur scène. L'art cherche l'effet plutôt que la connaissance."]]},
+ {theme:"Bannir ou encadrer la création (L'art dans la cité)", ex:[
+  ["Le bannissement (Rép. X, 595a)","La poésie imitative est rejetée de la cité idéale. La création est jugée selon son effet sur la communauté."],
+  ["Hymnes et éloges (Rép. X, 605c-608b)","Seuls restent les chants aux dieux et les éloges des hommes vertueux. Une création sans ornement, soumise au vrai."],
+  ["La porte entrouverte (Rép. X, 605c-608b)","Socrate réviserait son jugement si l'on prouvait l'utilité de la poésie. L'art doit justifier sa place."],
+  ["Renoncer comme à un amour (Rép. X, 605c-608b)","Il faut renoncer à l'art comme à une passion amoureuse nuisible. Le charme de l'œuvre rend son rejet douloureux."],
+  ["Le philosophe, juge de la poésie (Ion)","C'est au philosophe, non au poète, de juger une œuvre. Le créateur ne peut pas évaluer ce qu'il produit."],
+  ["Les philosophes à la place des poètes (Rép. X, 595a)","La raison des philosophes doit remplacer le mythe des poètes. La création perd son rôle d'éducatrice."]]}
+ ]};
+function buildChips(){ chap = null;
+$("#chapChips").innerHTML = `<button class="chip" aria-pressed="true" data-ch="">Tous</button>` + (WORKS[work].chips||ROMAN.slice(0,WORKS[work].nch).map(r=>[r,"Chap. "+r])).map(([r,l])=>`<button class="chip" aria-pressed="false" data-ch="${r}">${l}</button>`).join("");
+}
+function setWork(w){
+  work = w;
+  document.querySelectorAll(".work").forEach(b=>b.setAttribute("aria-pressed", b.dataset.work===w));
+  document.querySelectorAll("[data-pres]").forEach(d=>d.hidden = d.dataset.pres!==w);
+  $("#h1work").textContent = "· "+WORKS[w].label;
+  $("#subwork").innerHTML = WORKS[w].sub;
+  $("#q").value = ""; $("#copyMsg").textContent = "";
+  buildChips(); render(); renderTableau();
+}
+document.querySelectorAll(".work").forEach(b=>b.addEventListener("click",()=>{ setWork(b.dataset.work); try{history.replaceState(null,"","#"+work+"-"+currentView)}catch(_){} }));
+$("#chapChips").addEventListener("click",e=>{
+  const b = e.target.closest(".chip"); if(!b) return;
+  chap = b.dataset.ch || null;
+  document.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed", c===b));
+  render();
+});
+$("#q").addEventListener("input",render);
+$("#revise").addEventListener("click",e=>{
+  const on = !document.body.classList.contains("revise");
+  document.body.classList.toggle("revise",on);
+  e.currentTarget.setAttribute("aria-pressed",on);
+  document.querySelectorAll(".card.open").forEach(c=>c.classList.remove("open"));
+});
+$("#axes").addEventListener("click",e=>{
+  const card = e.target.closest(".card");
+  if(card && document.body.classList.contains("revise")) card.classList.toggle("open");
+});
+
+function show(view){
+  currentView = view;
+  document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected", t.dataset.view===view));
+  $("#presentation").hidden = view!=="presentation";
+  $("#fiches").hidden = view!=="fiches";
+  $("#tableau").hidden = view!=="tableau";
+  $("#essentiels").hidden = view!=="essentiels";
+  $("#revision").hidden = view!=="revision";
+  const global = view==="essentiels" || view==="revision";
+  document.querySelector(".works").hidden = global;
+  $("#h1work").textContent = view==="essentiels" ? "· Les incontournables" : view==="revision" ? "· Révision" : "· "+WORKS[work].label;
+  $("#subwork").innerHTML = view==="essentiels" ? "Woolf, Zola et Platon : 36 exemples polyvalents, classés par notion." : view==="revision" ? "Tous les exemples des fiches en cartes de révision, avec répétition espacée façon Anki." : WORKS[work].sub;
+  if(view==="revision" && window.ANKI) ANKI.refresh();
+}
+$("#copyTable").addEventListener("click",()=>{
+  const txt = tableauTSV();
+  const done = m => { $("#copyMsg").textContent = m; };
+  try{
+    navigator.clipboard.writeText(txt).then(()=>done("Copié : colle-le dans la cellule A1 d'Excel."),()=>fallback());
+  }catch(_){ fallback(); }
+  function fallback(){
+    const r = document.createRange(); r.selectNodeContents(document.getElementById("xl"));
+    const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+    done("Tableau sélectionné : fais Ctrl+C (ou Cmd+C).");
+  }
+});
+document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>{show(t.dataset.view); try{history.replaceState(null,"","#"+work+"-"+t.dataset.view)}catch(_){}}));
+function fromHash(){
+  const [w,v] = location.hash.slice(1).split("-");
+  const wk = WORKS[w] ? w : (WORKS[v] ? v : "woolf");
+  const vw = ["presentation","tableau","fiches","essentiels","revision"].find(x=>x===v||x===w) || "fiches";
+  if(wk!==work || !$("#subwork").innerHTML) setWork(wk);
+  show(vw);
+}
+window.addEventListener("hashchange",fromHash);
+
+const ESS_ROWS = [
+ {notion:"Le mystère de l'inspiration", idee:"D'où vient l'œuvre ? Elle semble naître d'une force qui dépasse le créateur : les dieux, le désir, une révélation, l'inconscient.",
+  woolf:[["L'idée au bord de la rivière","Chap. I","Une idée surgit sans qu'on sache d'où, puis un surveillant la chasse du gazon et elle la perd. L'inspiration est mystérieuse et fragile."],
+         ["L'esprit androgyne","Chap. VI","L'esprit crée quand ses parts masculine et féminine s'accordent. La création naît d'une harmonie intérieure, non d'une division."]],
+  zola:[["Christine endormie","Chap. I","Devant la jeune femme, le désir de Claude devient enthousiasme d'artiste. L'œuvre naît d'un désir détourné vers la création."],
+        ["La révélation du pont des Saints-Pères","Chap. VIII","En regardant l'île de la Cité, Claude voit soudain le sujet de son grand tableau. L'inspiration surgit d'un coup, dans un regard sur le réel."]],
+  platon:[["Le poète possédé","Ion","Le poète compose en transe, inspiré par les muses, incapable de se raisonner. Le créateur n'est pas maître de ce qu'il crée."],
+          ["Le dieu, créateur naturel","Rép. X, 595a-598d","Seul un dieu crée la forme des choses ; artisans et artistes ne font que copier. La seule vraie création est divine."]]},
+ {notion:"Les conditions de la création", idee:"Créer suppose des conditions : argent, lieu, liberté, mais aussi des sacrifices. Le talent seul ne suffit pas.",
+  woolf:[["Argent et lieu à soi","Chap. I et VI","Woolf ramène le mystère de la création à une rente et une pièce à soi. Le génie a besoin d'une infrastructure : la création n'est pas qu'un don."],
+         ["Oxbridge contre Fernham","Chap. I","Repas luxueux et conversation brillante chez les hommes, repas pauvre et pensée éteinte chez les femmes. L'esprit créateur dépend du confort matériel."]],
+  zola:[["La pose nue de Christine","Chap. IV","Christine se déshabille en silence pour que Claude finisse son tableau. L'œuvre exige des sacrifices de ceux qui entourent le créateur."],
+        ["Le bonheur de Bennecourt","Chap. VI","Heureux et amoureux à la campagne, Claude ne peint presque plus. L'œuvre et la vie comblée semblent ne pas pouvoir coexister."]],
+  platon:[["Tynnichos de Chalcis","Ion","Un poète médiocre écrit un jour le plus beau des poèmes. Le chef-d'œuvre est un don qui ne dépend pas du talent."],
+          ["Bannir les poètes","Rép. X, 595a et 605c-608b","La poésie imitative est chassée de la cité, sauf les hymnes et les éloges. La création dépend de la place que la communauté lui accorde."]]},
+ {notion:"Échec, limites et souffrance", idee:"La création a un prix : l'impuissance, la douleur, parfois la mort. Le créateur échoue souvent à atteindre ce qu'il vise.",
+  woolf:[["La sœur de Shakespeare","Chap. III","Même génie que son frère, mais ni école ni liberté : elle finit par se suicider. Le talent sans conditions favorables est condamné."],
+         ["Austen contre Brontë","Chap. IV","Austen écrit sans amertume, l'indignation de Brontë déforme Jane Eyre. La colère et la souffrance abîment l'œuvre."]],
+  zola:[["Les impuissances inexpliquées","Chap. II","Malgré son talent, Claude se sent parfois incapable de peindre ce qu'il veut, sans savoir pourquoi. L'échec créatif est aussi mystérieux que le génie."],
+        ["La pendaison face à l'œuvre","Chap. XII","Claude se pend devant sa toile inachevée. La quête du chef-d'œuvre finit par dévorer le créateur."]],
+  platon:[["Imposteur ou homme divin ?","Ion","Ion ne sait rien de ce qu'il déclame et préfère se dire « divin ». L'artiste inspiré ne comprend pas ce qu'il crée."],
+          ["Renoncer comme à un amour","Rép. X, 605c-608b","Il faut renoncer à l'art imitatif comme à une passion amoureuse nuisible. Le charme de l'œuvre rend son rejet douloureux."]]},
+ {notion:"Vérité et illusion", idee:"L'œuvre révèle-t-elle le réel ou le déforme-t-elle ? Elle peut montrer ce qu'on ne voit pas, ou nous tromper par les apparences.",
+  woolf:[["L'héritage de la tante","Chap. II","Libérée du besoin, la narratrice quitte la peur et l'amertume pour voir les choses telles qu'elles sont. Un esprit libre peut créer avec vérité."],
+         ["« Chloé aimait Olivia »","Chap. V","Pour la première fois, un roman montre une relation entre deux femmes. La création révèle des territoires de la vie restés dans l'ombre."]],
+  zola:[["Les arbres bleus","Chap. VI","Christine refuse qu'un arbre puisse être bleu, même quand Claude lui montre ce reflet. La création révèle un réel que l'œil habitué ne voit pas."],
+        ["L'Enfant mort","Chap. IX","En larmes, Claude peint le cadavre de son fils Jacques. L'artiste fait de sa douleur la plus intime une matière de vérité."]],
+  platon:[["Les trois lits","Rép. X, 595a-598d","Lit idéal du dieu, lit du menuisier, lit du peintre. L'œuvre d'art n'est qu'un simulacre au troisième rang de la vérité."],
+          ["Le trompe-l'œil","Rép. X, 595a-598d","Une peinture peut faire prendre une image pour la réalité. Plus l'œuvre est réussie, plus elle trompe."]]},
+ {notion:"Le public et le jugement", idee:"Une fois montrée, l'œuvre échappe au créateur : elle est jugée, moquée, vendue, et elle agit sur ceux qui la reçoivent.",
+  woolf:[["Le miroir grossissant","Chap. II","Rabaisser les femmes permet aux hommes de se voir plus grands ; la critique féminine les menace. Le jugement d'autrui pèse sur qui ose créer."],
+         ["Le refus de classer les talents","Chap. VI","Comparer les talents serait un débat de cour d'école. Il faut écrire ce que l'on veut, et non pour plaire aux critiques."]],
+  zola:[["Les rires du Salon des Refusés","Chap. V","La foule s'esclaffe devant Plein air sans le comprendre. Le public juge l'œuvre neuve selon ses habitudes, non selon sa valeur."],
+        ["Le plagiat de Fagerolles","Chap. VII et X","Une copie adoucie de Plein air triomphe auprès du public et des marchands. Le succès récompense la copie confortable plutôt que l'invention."]],
+  platon:[["Le plaisir dramatique","Rép. X, 605c-608b","Même les sages compatissent aux malheurs des héros, et ce plaisir relâche leurs émotions. L'œuvre transforme celui qui la reçoit."],
+          ["Le cavalier, le forgeron et l'imitateur","Rép. X, 601c-602c","L'utilisateur sait, le fabricant croit, l'imitateur ignore. L'artiste produit ce qui paraît beau au plus grand nombre, sans savoir."]]},
+ {notion:"Héritage et création collective", idee:"On ne crée jamais seul : l'œuvre s'appuie sur ceux qui précèdent, se nourrit d'un groupe et se transmet à d'autres.",
+  woolf:[["Les créatrices effacées","Chap. III","Derrière une sorcière condamnée se cache peut-être une poétesse. L'histoire de la création a ses arcanes : des œuvres jamais nées ou oubliées."],
+         ["Aphra Behn et le chef-d'œuvre collectif","Chap. IV","Première femme à vivre de sa plume, elle ouvre la voie aux suivantes. Une grande œuvre repose sur tous ceux qui l'ont précédée."]],
+  zola:[["Les jeudis de Sandoz","Chap. III","Après une crise de doute, Claude ressort revigoré d'un dîner entre amis artistes. La création se nourrit de l'échange et de l'élan collectif."],
+        ["Le projet de Sandoz","Chap. VI","Sandoz veut raconter l'histoire d'une famille : c'est le projet des Rougon-Macquart. Zola met en scène sa propre création dans le roman."]],
+  platon:[["La chaîne des anneaux","Ion","Les dieux inspirent le poète, qui inspire le rhapsode, qui touche le spectateur. La création est une force qui se transmet."],
+          ["Ion sur scène","Ion","En déclamant, Ion vit ce qu'il raconte et le fait vivre au public. L'interprète prolonge la création sans en être l'auteur."]]}
+];
+function cellHTML(list){ return list.map(([t,r,d])=>`<div class="ess-item"><p class="t">${esc(t)} <span class="ch">(${esc(r)})</span> :</p><p class="d">${esc(d)}</p></div>`).join(""); }
+function renderEss(){
+  $("#essTable").innerHTML = `<colgroup><col class="c-notion"><col><col><col></colgroup><thead><tr><th>Notion</th><th>Woolf · Un lieu à soi</th><th>Zola · L'Œuvre</th><th>Platon · Ion, République X</th></tr></thead><tbody>` +
+    ESS_ROWS.map(r=>`<tr><td class="notion"><b>${esc(r.notion)}</b><span>${esc(r.idee)}</span></td><td>${cellHTML(r.woolf)}</td><td>${cellHTML(r.zola)}</td><td>${cellHTML(r.platon)}</td></tr>`).join("") + `</tbody>`;
+}
+function essTSV(){
+  const q = s => '"'+s.replace(/"/g,'""')+'"';
+  const cell = l => q(l.map(([t,r,d])=>t+' ('+r+') :\n\n'+d).join('\n\n'));
+  return ['Notion\tWoolf\tZola\tPlaton'].concat(ESS_ROWS.map(r=>[q(r.notion), cell(r.woolf), cell(r.zola), cell(r.platon)].join('\t'))).join('\n');
+}
+$("#copyEss").addEventListener("click",()=>{
+  const done = m => { $("#essMsg").textContent = m; };
+  const fallback = ()=>{ const rg=document.createRange(); rg.selectNodeContents(document.getElementById("essTable")); const s=getSelection(); s.removeAllRanges(); s.addRange(rg); done("Tableau sélectionné : fais Ctrl+C (ou Cmd+C)."); };
+  try{ navigator.clipboard.writeText(essTSV()).then(()=>done("Copié : colle-le dans la cellule A1 d'Excel."),fallback); }catch(_){ fallback(); }
+});
+renderEss();
+
+/* ===== Révision façon Anki (SM-2) ===== */
+window.ANKI = (()=>{
+  const MIN = 6e4, DAY = 864e5, STEPS = [1*MIN, 10*MIN], AHEAD = 20*MIN, LS = "arcanes-anki-v1";
+  const DECKS = [["all","Tout"],["woolf","Woolf"],["zola","Zola"],["platon","Platon"]];
+  const hid = s => { let h = 7; for(const c of s) h = (h*31 + c.codePointAt(0))|0; return (h>>>0).toString(36); };
+  const CARDS = [];
+  [["woolf","Woolf"],["zola","Zola"],["platon","Platon"]].forEach(([w,label])=>{
+    WORKS[w].axes.forEach((a,ai)=>a.ex.forEach(e=>{
+      CARDS.push({id:w+"_"+hid(e.t+"|"+(e.ref||e.ch)), w, label, axe:ROMAN[ai]+". "+a.titre, t:e.t, ref:e.ref||("Chap. "+e.ch), d:e.d});
+    }));
+  });
+  let st = {cards:{}, day:"", newToday:0, extra:0, limit:15};
+  let deck = "all", cur = null, flipped = false, last = null, dbDoc = null, timer = null, chain = Promise.resolve();
+
+  const todayKey = ()=>{ const d = new Date(); return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate(); };
+  const endOfDay = ()=>{ const d = new Date(); d.setHours(23,59,59,999); return d.getTime(); };
+  function roll(){ if(st.day!==todayKey()){ st.day = todayKey(); st.newToday = 0; st.extra = 0; } }
+  function loadLocal(){ try{ const s = JSON.parse(localStorage.getItem(LS)||"null"); if(s && s.cards) st = Object.assign(st, s); }catch(_){} }
+  function save(){
+    clearTimeout(timer);
+    timer = setTimeout(()=>{
+      const snap = JSON.parse(JSON.stringify(st));
+      try{ localStorage.setItem(LS, JSON.stringify(snap)); }catch(_){}
+      if(dbDoc) chain = chain.then(()=>dbDoc.set(snap)).catch(()=>{ dbDoc = null; setStore(false); });
+    }, 300);
+  }
+  function setStore(acc){ $("#revStore").textContent = acc ? "Progression enregistrée sur ton compte" : "Progression enregistrée dans ce navigateur"; }
+
+  const inDeck = c => deck==="all" || c.w===deck;
+  const S = id => st.cards[id];
+  function counts(filter){
+    const now = Date.now(), eod = endOfDay(); let n=0, l=0, r=0, m=0, tot=0;
+    for(const c of CARDS){ if(!filter(c)) continue; tot++; const s = S(c.id);
+      if(!s) n++; else if(s.q==="review"){ if(s.due<=eod) r++; if(s.ivl>=21) m++; } else if(s.due<=now+AHEAD) l++; }
+    const room = Math.max(0, st.limit + st.extra - st.newToday);
+    return {n:Math.min(n,room), nAll:n, l, r, m, tot};
+  }
+  function pick(){
+    const now = Date.now(), eod = endOfDay(), list = CARDS.filter(inDeck);
+    const learn = list.filter(c=>S(c.id) && S(c.id).q!=="review").sort((a,b)=>S(a.id).due-S(b.id).due);
+    const ready = learn.find(c=>S(c.id).due<=now); if(ready) return ready;
+    const rev = list.filter(c=>S(c.id) && S(c.id).q==="review" && S(c.id).due<=eod).sort((a,b)=>S(a.id).due-S(b.id).due);
+    if(rev.length) return rev[0];
+    if(st.newToday < st.limit + st.extra){ const nw = list.find(c=>!S(c.id)); if(nw) return nw; }
+    const soon = learn.find(c=>S(c.id).due<=now+AHEAD); return soon || null;
+  }
+  function next(s0, g, now){
+    const s = Object.assign({q:"new", step:0, ivl:0, ef:2.5, reps:0, lapses:0, due:now}, s0||{});
+    const grad = days => { s.q = "review"; s.ivl = days; s.step = 0; s.due = now + days*DAY; };
+    if(s.q!=="review"){
+      const re = s.q==="relearn"; if(s.q==="new"){ s.q = "learn"; s.step = 0; }
+      if(g===1){ s.step = 0; s.due = now + STEPS[0]; }
+      else if(g===2){ s.due = now + (s.step===0 ? 6*MIN : STEPS[s.step]); }
+      else if(g===3){ if(re) grad(Math.max(1,s.ivl)); else { s.step++; if(s.step>=STEPS.length) grad(1); else s.due = now + STEPS[s.step]; } }
+      else grad(re ? Math.max(2,s.ivl+1) : 4);
+    } else {
+      if(g===1){ s.lapses++; s.ef = Math.max(1.3, s.ef-0.2); s.ivl = Math.max(1, Math.round(s.ivl*0.5)); s.q = "relearn"; s.step = 0; s.due = now + STEPS[1]; }
+      else if(g===2){ s.ef = Math.max(1.3, s.ef-0.15); s.ivl = Math.max(s.ivl+1, Math.round(s.ivl*1.2)); s.due = now + s.ivl*DAY; }
+      else if(g===3){ s.ivl = Math.max(s.ivl+1, Math.round(s.ivl*s.ef)); s.due = now + s.ivl*DAY; }
+      else { s.ef += 0.15; s.ivl = Math.max(s.ivl+2, Math.round(s.ivl*s.ef*1.3)); s.due = now + s.ivl*DAY; }
+    }
+    s.reps++; return s;
+  }
+  function fmt(ms){
+    if(ms < 60*MIN) return Math.max(1, Math.round(ms/MIN)) + " min";
+    if(ms < DAY) return Math.round(ms/(60*MIN)) + " h";
+    const d = Math.round(ms/DAY); if(d < 31) return d + " j";
+    const mo = d/30; return (mo < 12 ? (Math.round(mo*10)/10) + " mois" : (Math.round(d/36.5)/10) + " an").replace(".", ",");
+  }
+
+  function renderDecks(){
+    $("#revDecks").innerHTML = DECKS.map(([k,l])=>{
+      const c = counts(x=>k==="all"||x.w===k);
+      return `<button class="chip" type="button" aria-pressed="${deck===k}" data-deck="${k}" title="${c.n} nouvelles · ${c.l} en apprentissage · ${c.r} à revoir">${l} <span class="cnt n">${c.n}</span><span class="cnt l">${c.l}</span><span class="cnt r">${c.r}</span></button>`;
+    }).join("");
+  }
+  function renderStats(){
+    const c = counts(inDeck);
+    $("#cNew").textContent = c.n; $("#cLearn").textContent = c.l; $("#cDue").textContent = c.r;
+    $("#mBar").style.width = (c.tot ? 100*c.m/c.tot : 0) + "%";
+    $("#mTxt").textContent = c.m + " / " + c.tot + " maîtrisées";
+  }
+  function renderCard(){
+    const has = !!cur;
+    $("#flash").hidden = !has; $("#fDone").hidden = has;
+    $("#showAns").hidden = !has || flipped; $("#grades").hidden = !has || !flipped;
+    if(!has){
+      const c = counts(inDeck);
+      const future = CARDS.filter(inDeck).map(x=>S(x.id)).filter(Boolean).map(s=>s.due).filter(d=>d>Date.now()).sort((a,b)=>a-b)[0];
+      $("#doneTxt").textContent = (c.nAll ? "Tu as vu tes nouvelles cartes du jour. " : "Toutes les cartes de ce paquet ont été vues au moins une fois. ") + (future ? "Prochaine carte à revoir dans " + fmt(future-Date.now()) + "." : "");
+      $("#moreNew").hidden = !c.nAll; return;
+    }
+    $("#fMeta").textContent = cur.label + " · " + (S(cur.id) ? (S(cur.id).q==="review" ? "À revoir" : "En apprentissage") : "Nouvelle carte");
+    $("#fTitle").innerHTML = cur.t; $("#fRef").textContent = "(" + cur.ref + ")";
+    $("#fPrompt").hidden = flipped;
+    const ans = $("#fAns"); ans.hidden = !flipped;
+    ans.innerHTML = flipped ? esc(cur.d) + `<span class="axe-tag">Axe ${esc(cur.axe)}</span>` : "";
+    if(flipped){ const now = Date.now(); [1,2,3,4].forEach(g=>{ $("#i"+g).textContent = fmt(next(S(cur.id), g, now).due - now); }); }
+  }
+  function refresh(){ roll(); if(!cur || !inDeck(cur) || !flipped){ cur = pick(); flipped = false; } renderDecks(); renderStats(); renderCard(); }
+  function flip(){ if(cur && !flipped){ flipped = true; renderCard(); } }
+  function grade(g){
+    if(!cur || !flipped) return;
+    last = {id:cur.id, prev:S(cur.id) ? Object.assign({}, S(cur.id)) : null, newToday:st.newToday};
+    if(!S(cur.id)) st.newToday++;
+    st.cards[cur.id] = next(S(cur.id), g, Date.now());
+    $("#undo").disabled = false; save();
+    cur = null; flipped = false; refresh();
+  }
+  function undo(){
+    if(!last) return;
+    if(last.prev) st.cards[last.id] = last.prev; else delete st.cards[last.id];
+    st.newToday = last.newToday; cur = CARDS.find(c=>c.id===last.id); flipped = true; last = null;
+    $("#undo").disabled = true; save(); renderDecks(); renderStats(); renderCard();
+  }
+
+  $("#revDecks").addEventListener("click", e=>{ const b = e.target.closest("[data-deck]"); if(!b) return; deck = b.dataset.deck; cur = null; flipped = false; refresh(); });
+  $("#showAns").addEventListener("click", flip);
+  $("#grades").addEventListener("click", e=>{ const b = e.target.closest("[data-g]"); if(b) grade(+b.dataset.g); });
+  $("#undo").addEventListener("click", undo);
+  $("#moreNew").addEventListener("click", ()=>{ st.extra += 10; save(); refresh(); });
+  $("#newLimit").addEventListener("change", e=>{ st.limit = +e.target.value; save(); refresh(); });
+  $("#resetBtn").addEventListener("click", ()=>{ $("#resetConfirm").hidden = false; $("#resetBtn").hidden = true; });
+  $("#resetNo").addEventListener("click", ()=>{ $("#resetConfirm").hidden = true; $("#resetBtn").hidden = false; });
+  $("#resetYes").addEventListener("click", ()=>{ st = {cards:{}, day:todayKey(), newToday:0, extra:0, limit:st.limit}; last = null; $("#undo").disabled = true; cur = null; flipped = false; save(); $("#resetConfirm").hidden = true; $("#resetBtn").hidden = false; refresh(); });
+  document.addEventListener("keydown", e=>{
+    if($("#revision").hidden || e.metaKey || e.ctrlKey || e.altKey) return;
+    if(/^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName)) return;
+    if((e.key===" " || e.key==="Enter") && !flipped && cur){ e.preventDefault(); flip(); }
+    else if(flipped && /^[1-4]$/.test(e.key)){ e.preventDefault(); grade(+e.key); }
+    else if(e.key===" " && flipped){ e.preventDefault(); grade(3); }
+  });
+
+  loadLocal(); roll(); $("#newLimit").value = String(st.limit);
+  (async()=>{
+    try{
+      if(!window.claude || !window.claude.use) return;
+      const [db, user] = await Promise.all([window.claude.use("db"), window.claude.use("user")]);
+      if(!db || !user) return;
+      const uid = await user.id(); if(!uid) return;
+      const ref = db.doc("data/users/" + uid + "/anki");
+      const snap = await ref.get();
+      if(snap.exists){
+        const r = snap.data() || {}, rc = r.cards || {};
+        for(const id in rc){ const a = st.cards[id], b = rc[id]; if(!a || (b.reps||0) >= (a.reps||0)) st.cards[id] = b; }
+        if(r.day===st.day){ st.newToday = Math.max(st.newToday, r.newToday||0); st.extra = Math.max(st.extra, r.extra||0); }
+        if(r.limit) st.limit = r.limit;
+        $("#newLimit").value = String(st.limit);
+      }
+      dbDoc = ref; setStore(true); save();
+      if(!flipped){ cur = null; } refresh();
+    }catch(_){ dbDoc = null; }
+  })();
+  return {refresh};
+})();
+fromHash();
+</script>
+
+</body></html>
